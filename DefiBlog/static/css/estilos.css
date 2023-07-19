@@ -1,0 +1,14 @@
+#cuerpo{
+    background-color: #666770;
+    font-family: 'Courier New', Courier, monospace;
+}
+div{
+    color: white;
+}
+#integrantes{
+    font-size: 26px;
+    margin-top: 40px;
+}
+#cuerpointegrantes{
+    margin-top: 20px;
+}
