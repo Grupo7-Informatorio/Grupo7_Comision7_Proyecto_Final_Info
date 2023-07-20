@@ -3,14 +3,12 @@
 
 {% block contenido %}
 
-    <h1>NEW PAGE FOR YOU</h1>
-    <h2>WELCOLME BACK</h2>
     <form method="post" >
         {% csrf_token %}
         
         {{form.as_p}}
 
-        <button type="submit">Iniciar sesion</button>
+        <button type="submit" class="btn btn-dark">Iniciar sesion</button>
     
     </form>
 
