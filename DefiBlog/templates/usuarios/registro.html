@@ -2,10 +2,12 @@
 
 
 {% block contenido %}
-<h2>Crear un usuario</h2>
+<h2 class="formClass">Crear un usuario</h2>
+<div class="formClass">
 <form method ="post">{% csrf_token %}
     {{form.as_p}}
 
-    <button type = "sumbit" class="btn btn-dark">Registrarse</button>
+    <button type = "submit" class="btn btn-dark">Registrarse</button>
 </form>
+</div>
 {% endblock contenido %}

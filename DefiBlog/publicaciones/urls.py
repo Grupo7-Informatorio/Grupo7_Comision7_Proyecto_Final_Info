@@ -1,7 +1,7 @@
 from django.urls import path
-from core import views
+from publicaciones import views
 
 app_name = 'publicaciones'
 urlpatterns = [
-    path('publicaciones/',views.publicacionesView, name = 'publicaciones')
+    path('publicaciones/',views.VerPublicaciones.as_view(), name = 'publicaciones')
 ]
