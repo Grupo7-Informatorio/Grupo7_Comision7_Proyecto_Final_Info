@@ -9,3 +9,6 @@ def publicacionesView(request):
 # view renderiza pagina integrantes!
 def integrantesView(request):
     return render(request, 'integrantes.html', {})
+# view renderiza pagina categorias!
+def categoriasView(request):
+    return render(request, 'categorias.html', {})
