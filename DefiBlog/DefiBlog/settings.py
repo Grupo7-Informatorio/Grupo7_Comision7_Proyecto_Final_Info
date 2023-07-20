@@ -87,7 +87,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'defiblog',
         'USER': 'root',
-        'PASSWORD': 'Nicomysql0496',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '3306',
     }
