@@ -1,25 +1,29 @@
-{% extends 'base.html' %}
-{% load static %}
-
-
-{% block contenido %}
-    <h1>Welcolme</h1>
-    <h2>Here put yours Post</h2>
-
-
-    {% for post in posteos %}
-    <div class="card m-5">
-        <div class="card-header">
-            {{ post.fecha }}
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">{{ post.titulo }}</h5>
-            <p class="card-text">{{ post.post }}</p>
-            <p class="card-text">{{ post.categoria }}</p>
-            <p class="card-text">{{ post.creador }}</p>
-
-        </div>
-    </div>
-    {% endfor %}
-    
-{% endblock contenido %}
+{% extends 'base.html' %} {% load static %} {% block contenido %}
+<h1>Welcolme</h1>
+<h2>Here put yours Post</h2>
+<div class="d-grid gap-2">
+  <a href="{% url 'publicaciones:crear-publicacion' %}" class="btn btn-primary"
+    >Postear algo nuevo!</a
+  >
+</div>
+{% for post in posteos %}
+<div class="card m-5">
+  <div class="card-header">{{ post.fecha }}</div>
+  <div class="card-body">
+    <h5 class="card-title">{{ post.titulo }}</h5>
+    <p class="card-text">{{ post.post }}</p>
+    <p class="card-text">{{ post.categoria }}</p>
+    <p class="card-text">{{ post.creador }}</p>
+  </div>
+  <a
+    href="{% url 'publicaciones:editar-publicacion' post.id %}"
+    class="btn btn-info"
+    >Editar</a
+  >
+  <a
+    href="{% url 'publicaciones:eliminar-publicacion' post.id %}"
+    class="btn btn-danger"
+    >Eliminar</a
+  >
+</div>
+{% endfor %} {% endblock contenido %}

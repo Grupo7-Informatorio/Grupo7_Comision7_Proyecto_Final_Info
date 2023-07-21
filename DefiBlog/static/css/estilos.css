@@ -7,8 +7,9 @@ nav {
   /* font-family: "Courier New", Courier, monospace; */
   margin-top: 56px;
   padding-bottom: 24px;
+  padding: 30px;
 }
-.footer {
+footer {
   position: fixed;
   bottom: 0;
   width: 100%;
