@@ -3,16 +3,22 @@
 
 {% block contenido %}
 
+    <span>Tienes una cuenta?</span>
+    
+
     <form method="post" >
         {% csrf_token %}
         
+
         {{form.as_p}}
 
-        <button type="submit" class="btn btn-dark">Iniciar sesion</button>
+        <button type="submit" class="button">Iniciar sesion</button>
     
+
     </form>
 
 
-
+    
 
 {% endblock contenido %}
+
