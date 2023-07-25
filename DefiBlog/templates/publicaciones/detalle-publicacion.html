@@ -1,0 +1,34 @@
+{% extends 'base.html' %} {% block contenido %}
+<div class="card" style="width: 18rem">
+  <div class="card-body">
+    <p class="card-text">{{post.fecha}}</p>
+    <h6>{{post.creador}}</h6>
+    <h5 class="card-title">{{ post.titulo }}</h5>
+    <p class="card-text">{{post.post}}</p>
+  </div>
+</div>
+
+<div class="comentarios-container">
+  <h2>Comentarios</h2>
+
+  {% for comentario in post.comentarios.all %}
+  <div class="card">
+    <div class="card-body">
+      <h6>{{comentario.creador.username}}</h6>
+      <p>{{comentario.texto}}</p>
+
+      <a href="{% url 'publicaciones:borrar-comentario' comentario.id %}"
+        ><i class="fa-solid fa-trash"></i
+      ></a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<form method="post">
+  {% csrf_token %} {{ comentario_form }}
+
+  <button type="submit">Comentar</button>
+</form>
+
+{% endblock contenido %}
