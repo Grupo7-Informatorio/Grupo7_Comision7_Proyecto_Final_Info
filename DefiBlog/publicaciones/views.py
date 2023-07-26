@@ -1,10 +1,11 @@
 from typing import Any, Dict
-from django.shortcuts import render
+from django.shortcuts import redirect
 from publicaciones.models import Publicaciones, Comentario
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.urls import reverse
 from .forms import CrearPublicacionForm, ComentarioForm
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin 
+from core.mixins import SuperusuarioAutorMixin
 
 
 # Create your views here.
@@ -36,7 +37,7 @@ class CrearPublicacion(LoginRequiredMixin, CreateView):
 
 
 
-class EditarPublicacion(LoginRequiredMixin, UpdateView):
+class EditarPublicacion(SuperusuarioAutorMixin,LoginRequiredMixin, UpdateView):
     model = Publicaciones
     template_name = 'publicaciones/editar-publicacion.html'
     form_class = CrearPublicacionForm
@@ -48,7 +49,7 @@ class EditarPublicacion(LoginRequiredMixin, UpdateView):
 
 
     
-class EliminarPublicacion(DeleteView):
+class EliminarPublicacion(SuperusuarioAutorMixin,LoginRequiredMixin,DeleteView):
     model = Publicaciones
     template_name ='publicaciones/eliminar-publicacion.html'
     
@@ -69,6 +70,8 @@ class DetallePublicacion(DetailView):
         return context
     
     def post(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return redirect('usuarios:login') 
         publicacion = self.get_object()
         form = ComentarioForm(request.POST)
 
@@ -84,7 +87,7 @@ class DetallePublicacion(DetailView):
 
 
 
-class BorrarComentario(LoginRequiredMixin, DeleteView):
+class BorrarComentario(SuperusuarioAutorMixin,LoginRequiredMixin, DeleteView):
     model = Comentario
     template_name = 'publicaciones/borrar-comentario.html'
 
