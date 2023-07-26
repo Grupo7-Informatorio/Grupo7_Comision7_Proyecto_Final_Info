@@ -1,6 +1,25 @@
 {% extends 'base.html' %} {% load static %} {% block contenido %}
 <h1>Welcolme</h1>
 <h2>Here put yours Post</h2>
+
+<form action="" method="get">
+  <select name="categoria" id="">
+    <option value="">Todas</option>
+    {% for categoria in categorias %}
+    <option value="{{categoria.id}}">{{categoria.nombre}}</option>
+    {% endfor %}
+  </select>
+
+  <select name="orderby" id="">
+    <option value="">Ordenar por</option>
+    <option value="fecha_asc">Fecha ascendente</option>
+    <option value="fecha_desc">Fecha descendente</option>
+    <option value="alf_asc">Alfabeticamente ascendente</option>
+    <option value="alf_desc">Alfabeticamente descendente</option>
+  </select>
+
+  <button type="submit">Filtrar</button>
+</form>
 <div class="d-grid gap-2">
   <a href="{% url 'publicaciones:crear-publicacion' %}" class="btn btn-primary"
     >Postear algo nuevo!</a
@@ -31,4 +50,36 @@
     >Eliminar</a
   >
 </div>
-{% endfor %} {% endblock contenido %}
+{% endfor %}
+
+<div class="pagination">
+  <span class="step-links">
+    {% if page_obj.has_previous %}
+    <a
+      href="?page=1{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}{% if request.GET.orderby %}&orderby={{ request.GET.orderby }}{% endif %}"
+      >&laquo; first</a
+    >
+    <a
+      href="?page={{ page_obj.previous_page_number }}{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}{% if request.GET.orderby %}&orderby={{ request.GET.orderby }}{% endif %}"
+      >previous</a
+    >
+    {% endif %}
+
+    <span class="current">
+      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+    </span>
+
+    {% if page_obj.has_next %}
+    <a
+      href="?page={{ page_obj.next_page_number }}{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}{% if request.GET.orderby %}&orderby={{ request.GET.orderby }}{% endif %}"
+      >next</a
+    >
+    <a
+      href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}{% if request.GET.orderby %}&orderby={{ request.GET.orderby }}{% endif %}"
+      >last &raquo;</a
+    >
+    {% endif %}
+  </span>
+</div>
+
+{% endblock contenido %}
