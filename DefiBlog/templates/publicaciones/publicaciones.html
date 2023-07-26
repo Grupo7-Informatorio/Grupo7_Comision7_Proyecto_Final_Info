@@ -16,6 +16,11 @@
     <p class="card-text">{{ post.creador }}</p>
   </div>
   <a
+    href="{% url 'publicaciones:detalle-publicacion' post.id %}"
+    class="btn btn-warning"
+    >Indagar en profundidad</a
+  >
+  <a
     href="{% url 'publicaciones:editar-publicacion' post.id %}"
     class="btn btn-info"
     >Editar</a
