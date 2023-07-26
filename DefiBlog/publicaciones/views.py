@@ -90,3 +90,4 @@ class BorrarComentario(LoginRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse('publicaciones:detalle-publicacion', args = [self.object.post.id])
+    

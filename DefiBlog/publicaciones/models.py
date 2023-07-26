@@ -15,6 +15,7 @@ class Publicaciones(models.Model):
     update = models.DateField(auto_now=True)
     titulo = models.CharField(max_length = 255)
     post = models.TextField()
+    imagen = models.URLField(null=True, blank=False)
     categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, related_name='posteos', null= True)
     creador = models.ForeignKey(usuario, on_delete=models.CASCADE, related_name='posteos_usario')
 
