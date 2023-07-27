@@ -17,18 +17,20 @@
       <h6>{{comentario.creador.username}}</h6>
       <p>{{comentario.texto}}</p>
 
+      {% if user.is_superuser or user == comentario.creador %}
       <a href="{% url 'publicaciones:borrar-comentario' comentario.id %}"
         ><i class="fa-solid fa-trash"></i
       ></a>
+      {% endif %}
     </div>
   </div>
   {% endfor %}
 </div>
 
+{% if user.is_authenticated %}
 <form method="post">
   {% csrf_token %} {{ comentario_form }}
 
   <button type="submit">Comentar</button>
 </form>
-
-{% endblock contenido %}
+{% endif %} {% endblock contenido %}
