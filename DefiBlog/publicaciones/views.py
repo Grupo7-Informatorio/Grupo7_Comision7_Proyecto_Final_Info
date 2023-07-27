@@ -25,6 +25,7 @@ class VerPublicaciones(ListView):
         
         #Filtrando por categoria
         categoria_seleccionada = self.request.GET.get('categoria')
+        queryset = queryset.order_by('-fecha')
         if categoria_seleccionada:
             queryset = queryset.filter(categoria = categoria_seleccionada)
     

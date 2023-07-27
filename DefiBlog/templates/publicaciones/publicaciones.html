@@ -6,24 +6,30 @@
   <select name="categoria" id="">
     <option value="">Todas</option>
     {% for categoria in categorias %}
-    <option value="{{categoria.id}}">{{categoria.nombre}}</option>
+      <option value="{{categoria.id}}" {% if categoria.id|stringformat:"s" == request.GET.categoria %}selected{% endif %}>{{categoria.nombre}}</option>
     {% endfor %}
   </select>
+  
+  {% for categoria in categorias %}
+    {{categoria.id}} {{request.GET.categoria}}
+  {% endfor %}
 
   <select name="orderby" id="">
     <option value="">Ordenar por</option>
-    <option value="fecha_asc">Fecha ascendente</option>
-    <option value="fecha_desc">Fecha descendente</option>
-    <option value="alf_asc">Alfabeticamente ascendente</option>
-    <option value="alf_desc">Alfabeticamente descendente</option>
+    <option value="fecha_asc" {% if 'fecha_asc' == request.GET.orderby %}selected{% endif %}>Fecha ascendente</option>
+    <option value="fecha_desc" {% if 'fecha_desc' == request.GET.orderby %}selected{% endif %}>Fecha descendente</option>
+    <option value="alf_asc" {% if 'alf_asc' == request.GET.orderby %}selected{% endif %}>Alfabeticamente ascendente</option>
+    <option value="alf_desc" {% if 'alf_desc' == request.GET.orderby %}selected{% endif %}>Alfabeticamente descendente</option>
   </select>
 
   <button type="submit">Filtrar</button>
 </form>
 <div class="d-grid gap-2">
+  {% if user.is_authenticated and user.es_colaborador or user.is_superuser %}
   <a href="{% url 'publicaciones:crear-publicacion' %}" class="btn btn-primary"
     >Postear algo nuevo!</a
   >
+  {% endif %}
 </div>
 {% for post in posteos %}
 <div class="card m-5">
@@ -39,6 +45,7 @@
     class="btn btn-warning"
     >Indagar en profundidad</a
   >
+  {% if user.is_superuser or user == post.creador %}
   <a
     href="{% url 'publicaciones:editar-publicacion' post.id %}"
     class="btn btn-info"
@@ -49,6 +56,7 @@
     class="btn btn-danger"
     >Eliminar</a
   >
+  {% endif %}
 </div>
 {% endfor %}
 
