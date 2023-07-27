@@ -1,10 +1,11 @@
 from typing import Any, Dict
 from django.shortcuts import render
-from publicaciones.models import Publicaciones, Comentario
+from publicaciones.models import Publicaciones, Comentario, Categoria
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.urls import reverse
 from .forms import CrearPublicacionForm, ComentarioForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from core.mixins import SuperusuarioAutorMixin, ColaboradorMixin
 
 
 # Create your views here.
@@ -12,16 +13,38 @@ class VerPublicaciones(ListView):
     model = Publicaciones
     template_name = 'publicaciones/publicaciones.html'
     context_object_name = 'posteos'
+    paginate_by = 4
 
-    def get_queryset(self):
-        consulta_anterior = super().get_queryset()
-        return consulta_anterior.order_by('-fecha')
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categorias'] = Categoria.objects.all
+        return context
     
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        
+        #Filtrando por categoria
+        categoria_seleccionada = self.request.GET.get('categoria')
+        if categoria_seleccionada:
+            queryset = queryset.filter(categoria = categoria_seleccionada)
+    
+        orden = self.request.GET.get('orderby')
+        if orden:
+            if orden == 'fecha_asc':
+                queryset = queryset.order_by('fecha')
+            elif orden == 'fecha_desc':
+                queryset = queryset.order_by('-fecha')
+            elif orden == 'alf_asc':
+                queryset = queryset.order_by('titulo')
+            elif orden == 'alf_desc':
+                queryset = queryset.order_by('-titulo')
+
+        return queryset
 
 
 
 
-class CrearPublicacion(LoginRequiredMixin, CreateView):
+class CrearPublicacion(ColaboradorMixin, LoginRequiredMixin, CreateView):
     model = Publicaciones
     template_name = 'publicaciones/crear-publicacion.html'
     form_class = CrearPublicacionForm
@@ -36,7 +59,7 @@ class CrearPublicacion(LoginRequiredMixin, CreateView):
 
 
 
-class EditarPublicacion(LoginRequiredMixin, UpdateView):
+class EditarPublicacion(SuperusuarioAutorMixin, LoginRequiredMixin, UpdateView):
     model = Publicaciones
     template_name = 'publicaciones/editar-publicacion.html'
     form_class = CrearPublicacionForm
@@ -48,7 +71,7 @@ class EditarPublicacion(LoginRequiredMixin, UpdateView):
 
 
     
-class EliminarPublicacion(DeleteView):
+class EliminarPublicacion(SuperusuarioAutorMixin, LoginRequiredMixin, DeleteView):
     model = Publicaciones
     template_name ='publicaciones/eliminar-publicacion.html'
     
@@ -84,7 +107,7 @@ class DetallePublicacion(DetailView):
 
 
 
-class BorrarComentario(LoginRequiredMixin, DeleteView):
+class BorrarComentario(SuperusuarioAutorMixin, LoginRequiredMixin, DeleteView):
     model = Comentario
     template_name = 'publicaciones/borrar-comentario.html'
 
