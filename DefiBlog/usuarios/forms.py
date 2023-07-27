@@ -18,3 +18,14 @@ class RegisterForm(UserCreationForm):
             'domicilio': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your address'}),
             'imagen_perfil': forms.ClearableFileInput(attrs={'class': 'form-control'}),
         }
+        
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Add the 'form-control' class to all fields except password fields
+        for field_name, field in self.fields.items():
+            if field_name not in ['password1', 'password2']:
+                field.widget.attrs['class'] = 'form-control'
+
+        # Customize the password field widget
+        self.fields['password1'].widget = forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Enter a password'})
+        self.fields['password2'].widget = forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirm your password'})
