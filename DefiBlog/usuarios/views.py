@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import RegisterForm
-from django.contrib.auth import login
+from django.views import View
+from django.contrib.auth import authenticate, login
 from django.views.generic.edit import CreateView
+
 from django.urls import reverse
 from .models import usuario
 

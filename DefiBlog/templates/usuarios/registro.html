@@ -1,13 +1,10 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block contenido %}
+<h2>Crear un usuario</h2>
+<div class="form-group">
+  <form method="post">
+    {% csrf_token %} {{form.as_p}}
 
-
-{% block contenido %}
-<h2 class="formClass">Crear un usuario</h2>
-<div class="formClass">
-<form method ="post">{% csrf_token %}
-    {{form.as_p}}
-
-    <button type = "submit" class="btn btn-dark">Registrarse</button>
-</form>
+    <button type="submit" class="btn btn-dark">Registrarse</button>
+  </form>
 </div>
 {% endblock contenido %}

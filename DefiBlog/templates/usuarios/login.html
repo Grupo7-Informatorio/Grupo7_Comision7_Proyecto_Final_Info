@@ -1,24 +1,10 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block contenido %}
+<span>Tienes una cuenta?</span>
 
+<form method="post">
+  {% csrf_token %} {{form.as_p}}
 
-{% block contenido %}
-
-    <span>Tienes una cuenta?</span>
-    
-
-    <form method="post" >
-        {% csrf_token %}
-        
-
-        {{form.as_p}}
-
-        <button type="submit" class="button">Iniciar sesion</button>
-    
-
-    </form>
-
-
-    
+  <button type="submit" class="button">Iniciar sesion</button>
+</form>
 
 {% endblock contenido %}
-

@@ -21,7 +21,6 @@ footer {
 label {
   color: antiquewhite;
   justify-content: center;
-
 }
 
 div {
@@ -48,22 +47,21 @@ span {
 }
 
 p {
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   min-height: 10vh;
-
 }
 
 input {
   height: 45px;
   width: 30%;
-  border :#2C3E50;
+  border: #2c3e50;
   outline: none;
   border-radius: 20px;
   color: #0d0c0c;
   padding: 0 0 0 42px;
-  background: rgba(255,255,255,0.4);
+  background: rgba(255, 255, 255, 0.4);
 }
 
 .button {
@@ -77,9 +75,9 @@ input {
   height: 45px;
   outline: none;
   width: 10%;
-  background: rgba(255,255,255,0.7);
+  background: rgba(255, 255, 255, 0.7);
   cursor: pointer;
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .button:hover {
