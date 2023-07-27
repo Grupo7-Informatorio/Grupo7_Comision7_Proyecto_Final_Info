@@ -1,6 +1,9 @@
 {% extends 'base.html' %} {% load static %} {% block contenido %}
+<<<<<<< Updated upstream
 <h1>Bienvenido!</h1>
 <h2>Aquí pon tu Publicación</h2>
+=======
+>>>>>>> Stashed changes
 
 <form action="" method="get">
   <select name="categoria" id="">
@@ -36,11 +39,12 @@
     <p class="card-text">{{ post.post }}</p>
     <p class="card-text">{{ post.categoria }}</p>
     <p class="card-text">{{ post.creador }}</p>
+    
   </div>
   <a
     href="{% url 'publicaciones:detalle-publicacion' post.id %}"
     class="btn btn-warning"
-    >Indagar en profundidad</a
+    >Ver más</a
   >
   {% if user.is_superuser or user == post.creador %}
   <a

@@ -28,6 +28,15 @@
 </div>
 
 {% if user.is_authenticated %}
+<form action="{% url 'publicaciones:me-gusta' post.id %}" method="post">
+  {% csrf_token %}
+  <input type="hidden" name="publicacion_id" value="{{post.id}}" />
+  {% if user in post.meGusta.all %}
+  <button type="submit" class="custom-button">Ya no me gusta</button>
+  {% else %}
+  <button type="submit" class="custom-button">me gusta!</button>
+  {% endif %}
+</form>
 <form method="post">
   {% csrf_token %} {{ comentario_form }}
 
