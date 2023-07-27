@@ -9,10 +9,7 @@
       <option value="{{categoria.id}}" {% if categoria.id|stringformat:"s" == request.GET.categoria %}selected{% endif %}>{{categoria.nombre}}</option>
     {% endfor %}
   </select>
-  
-  {% for categoria in categorias %}
-    {{categoria.id}} {{request.GET.categoria}}
-  {% endfor %}
+
 
   <select name="orderby" id="">
     <option value="">Ordenar por</option>
