@@ -5,6 +5,22 @@
     <h6>{{post.creador}}</h6>
     <h5 class="card-title">{{ post.titulo }}</h5>
     <p class="card-text">{{post.post}}</p>
+
+    {% if user.is_authenticated %}
+    <form action="{% url 'publicaciones:me-gusta' post.id %}" method="post">
+      {% csrf_token %}
+      <input type="hidden" name="publicacion_id" value="{{post.id}}" />
+      {% if user in post.meGusta.all %}
+      <button type="submit" class="btn btn-danger">
+        <i class="fa-regular fa-thumbs-down"></i>
+      </button>
+      {% else %}
+      <button type="submit" class="btn btn-success">
+        <i class="fa-regular fa-thumbs-up"></i>
+      </button>
+      {% endif %}
+    </form>
+    {% endif %}
   </div>
 </div>
 
@@ -28,15 +44,7 @@
 </div>
 
 {% if user.is_authenticated %}
-<form action="{% url 'publicaciones:me-gusta' post.id %}" method="post">
-  {% csrf_token %}
-  <input type="hidden" name="publicacion_id" value="{{post.id}}" />
-  {% if user in post.meGusta.all %}
-  <button type="submit" class="custom-button">Ya no me gusta</button>
-  {% else %}
-  <button type="submit" class="custom-button">me gusta!</button>
-  {% endif %}
-</form>
+
 <form method="post">
   {% csrf_token %} {{ comentario_form }}
 

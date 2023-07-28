@@ -110,7 +110,7 @@ class BorrarComentario(SuperusuarioAutorMixin, LoginRequiredMixin, DeleteView):
     template_name = 'publicaciones/borrar-comentario.html'
 
     def get_success_url(self):
-        return reverse('publicaciones:detalle-publicacion', args = [self.object.post.id])
+        return reverse('publicaciones:detalle-post', args = [self.object.post.id])
     
 
 
