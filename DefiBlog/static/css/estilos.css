@@ -1,8 +1,5 @@
 
 
-nav {
-  padding: 15px;
-}
 
 #cuerpo {
   background-image: url(../img/DeFi.webp);
@@ -14,21 +11,21 @@ nav {
   padding-bottom: 24px;
   padding: 30px;
 }
+
 footer {
   justify-content: center;
   position: fixed;
   bottom: 0;
   width: 100%;
 }
+
 label {
   color: antiquewhite;
   justify-content: center;
 
 }
 
-div {
-  color: white;
-}
+
 #integrantes {
   font-size: 26px;
   margin-top: 40px;
@@ -57,16 +54,7 @@ p {
 
 }
 
-input {
-  height: 45px;
-  width: 30%;
-  border :#2C3E50;
-  outline: none;
-  border-radius: 20px;
-  color: #0d0c0c;
-  padding: 0 0 0 42px;
-  background: rgba(255,255,255,0.4);
-}
+
 
 .button {
   color: #000000;
@@ -88,3 +76,24 @@ input {
   box-shadow: 5px 10px 10px 2px rgba(236, 230, 230, 0.2);
 }
 
+
+
+
+.card-border {
+  border: solid 10px white;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all ease-out 0.2s;
+}
+
+.card-border:hover{
+  transform: scale(1.02);
+}
+
+.col-sm {
+  background: rgb(255,255,255);
+  background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgb(114, 17, 218) 60%);
+  background-repeat: repeat-x;
+  background-size: 75%;
+  margin-top: -20px;
+}

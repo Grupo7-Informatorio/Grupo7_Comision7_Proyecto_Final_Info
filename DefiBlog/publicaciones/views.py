@@ -1,5 +1,5 @@
 from typing import Any, Dict
-from django.shortcuts import render
+from django.shortcuts import redirect, get_object_or_404, render
 from publicaciones.models import Publicaciones, Comentario, Categoria
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.urls import reverse
@@ -23,7 +23,6 @@ class VerPublicaciones(ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         
-        #Filtrando por categoria
         categoria_seleccionada = self.request.GET.get('categoria')
         queryset = queryset.order_by('-fecha')
         if categoria_seleccionada:
@@ -67,8 +66,6 @@ class EditarPublicacion(SuperusuarioAutorMixin, LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse('publicaciones:publicaciones')
-    
-
 
 
     
@@ -114,3 +111,18 @@ class BorrarComentario(SuperusuarioAutorMixin, LoginRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse('publicaciones:detalle-publicacion', args = [self.object.post.id])
+    
+
+
+
+def me_gusta_view(request, pk):
+     if request.method == "POST":
+         publicacion_id = request.POST.get('publicacion_id')
+         publicacion = get_object_or_404(Publicaciones, id = publicacion_id)
+         usuario = request.user
+         if publicacion.meGusta.filter(id=usuario.id).exists():
+             publicacion.meGusta.remove(usuario)
+         else:
+             publicacion.meGusta.add(usuario)
+   
+     return redirect('publicaciones:detalle-post' , pk=publicacion_id)

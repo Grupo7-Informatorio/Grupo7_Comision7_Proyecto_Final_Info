@@ -1,5 +1,8 @@
+<<<<<<< HEAD
+{% extends 'base.html' %} 
+=======
 {% extends 'base.html' %} {% block contenido %}
-<div class="card" style="width: 18rem">
+<div class="card">
   <div class="card-body">
     <p class="card-text">{{post.fecha}}</p>
     <h6>{{post.creador}}</h6>
@@ -7,9 +10,23 @@
     <p class="card-text">{{post.post}}</p>
   </div>
 </div>
+>>>>>>> 7b73b63309050e36bd76f4a1a43929f8092f255f
 
-<div class="comentarios-container">
-  <h2>Comentarios</h2>
+
+{% block contenido %}
+
+
+  <div class="card" style="width: 18rem">
+    <div class="card-body">
+      <p class="card-text">{{post.fecha}}</p>
+      <h6>{{post.creador}}</h6>
+      <h5 class="card-title">{{ post.titulo }}</h5>
+      <p class="card-text">{{post.post}}</p>
+    </div>
+  </div>
+
+  <div class="comentarios-container">
+    <h2>Comentarios</h2>
 
   {% for comentario in post.comentarios.all %}
   <div class="card">
@@ -28,6 +45,15 @@
 </div>
 
 {% if user.is_authenticated %}
+<form action="{% url 'publicaciones:me-gusta' post.id %}" method="post">
+  {% csrf_token %}
+  <input type="hidden" name="publicacion_id" value="{{post.id}}" />
+  {% if user in post.meGusta.all %}
+  <button type="submit" class="custom-button">Ya no me gusta</button>
+  {% else %}
+  <button type="submit" class="custom-button">me gusta!</button>
+  {% endif %}
+</form>
 <form method="post">
   {% csrf_token %} {{ comentario_form }}
 

@@ -9,10 +9,7 @@
       <option value="{{categoria.id}}" {% if categoria.id|stringformat:"s" == request.GET.categoria %}selected{% endif %}>{{categoria.nombre}}</option>
     {% endfor %}
   </select>
-  
-  {% for categoria in categorias %}
-    {{categoria.id}} {{request.GET.categoria}}
-  {% endfor %}
+
 
   <select name="orderby" id="">
     <option value="">Ordenar por</option>
@@ -24,6 +21,7 @@
 
   <button type="submit">Filtrar</button>
 </form>
+
 <div class="d-grid gap-2">
   {% if user.is_authenticated and user.es_colaborador or user.is_superuser %}
   <a href="{% url 'publicaciones:crear-publicacion' %}" class="btn btn-primary"
@@ -31,7 +29,33 @@
   >
   {% endif %}
 </div>
+
 {% for post in posteos %}
+<<<<<<< HEAD
+
+
+
+<div id="cards">
+  <div class="container">
+    <div class="row">
+      <h6 class="text-center pb-5 pt-5 h1 text-white">SECCION PUBLICACIONES</h6>
+      <div class="row 4">
+        <div class="col-md-4">
+          <div class="card w-100 card-border mb-5"> <!--style="width: 18rem;">-->
+            <div class="card-body">
+              <img src="{% static 'img/carr02.jpg' %}" class="card-img-top" alt="prueba">
+              <p class="card-text">{{ post.fecha }}</p>
+              <p class="card-text">{{ post.titulo }}</p>
+              <p class="card-title">{{ post.post}}</p>
+              <p class="card-text">{{ post.categoria }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+=======
 <div class="card m-5">
   <div class="card-header">{{ post.fecha }}</div>
   <div class="card-body">
@@ -39,25 +63,29 @@
     <p class="card-text">{{ post.post }}</p>
     <p class="card-text">{{ post.categoria }}</p>
     <p class="card-text">{{ post.creador }}</p>
+    
+>>>>>>> 7b73b63309050e36bd76f4a1a43929f8092f255f
   </div>
+</div>
+
   <a
     href="{% url 'publicaciones:detalle-publicacion' post.id %}"
     class="btn btn-warning"
-    >Indagar en profundidad</a
+<<<<<<< HEAD
+    >Indagar en profundidad</a>
+
+=======
+    >Ver más</a
   >
+>>>>>>> 7b73b63309050e36bd76f4a1a43929f8092f255f
   {% if user.is_superuser or user == post.creador %}
-  <a
-    href="{% url 'publicaciones:editar-publicacion' post.id %}"
-    class="btn btn-info"
-    >Editar</a
-  >
-  <a
-    href="{% url 'publicaciones:eliminar-publicacion' post.id %}"
-    class="btn btn-danger"
-    >Eliminar</a
-  >
+
+    <a href="{% url 'publicaciones:editar-publicacion' post.id %}" class="btn btn-info">Editar</a>
+    <a href="{% url 'publicaciones:eliminar-publicacion' post.id %}" class="btn btn-danger">Eliminar</a>
+
   {% endif %}
 </div>
+
 {% endfor %}
 
 <div class="pagination">
