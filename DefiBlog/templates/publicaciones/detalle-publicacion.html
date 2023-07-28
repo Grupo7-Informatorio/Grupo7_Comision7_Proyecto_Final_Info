@@ -24,8 +24,21 @@
   </div>
 </div>
 
-<div class="comentarios-container">
-  <h2>Comentarios</h2>
+
+{% block contenido %}
+
+
+  <div class="card" style="width: 18rem">
+    <div class="card-body">
+      <p class="card-text">{{post.fecha}}</p>
+      <h6>{{post.creador}}</h6>
+      <h5 class="card-title">{{ post.titulo }}</h5>
+      <p class="card-text">{{post.post}}</p>
+    </div>
+  </div>
+
+  <div class="comentarios-container">
+    <h2>Comentarios</h2>
 
   {% for comentario in post.comentarios.all %}
   <div class="card">
@@ -44,7 +57,6 @@
 </div>
 
 {% if user.is_authenticated %}
-
 <form method="post">
   {% csrf_token %} {{ comentario_form }}
 

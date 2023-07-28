@@ -1,112 +1,71 @@
 {% extends 'base.html' %} {% load static %} {% block contenido %}
 
-<div>
-  <h1>DeFi - Finanzas Descentralizadas</h1>
 
-  <div
-    id="carouselExampleControls"
-    class="carousel slide"
-    data-bs-ride="carousel"
-  >
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img
-          src="{% static 'img/carr01.jpg' %}"
-          class="d-block w-100"
-          alt="imagen 1"
-        />
-      </div>
-      <div class="carousel-item">
-        <img
-          src="{% static 'img/carr02.jpg' %}"
-          class="d-block w-100"
-          alt="imagen 2"
-        />
-      </div>
-      <div class="carousel-item">
-        <img
-          src="{% static 'img/carr03.jpg' %}"
-          class="d-block w-100"
-          alt="imagen 3"
-        />
-      </div>
+    <!--  <h1>DeFi - Finanzas Descentralizadas</h1>  -->
+
+    <div>
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'img/carr01.jpg' %}" class="d-block w-100" alt="imagen 1">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'img/carr02.jpg' %}" class="d-block w-100" alt="imagen 2">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'img/carr03.jpg' %}" class="d-block w-100" alt="imagen 3">
+            </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+            </button>
+        </div>
     </div>
-    <button
-      class="carousel-control-prev"
-      type="button"
-      data-bs-target="#carouselExampleControls"
-      data-bs-slide="prev"
-    >
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button
-      class="carousel-control-next"
-      type="button"
-      data-bs-target="#carouselExampleControls"
-      data-bs-slide="next"
-    >
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
+    
+    
 
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-12">
-        <ul class="list-group">
-          <li class="list-group-item">
-            Las Finanzas Descentralizadas, también conocidas como DeFi
-            (Decentralized Finance en inglés), son una innovadora y
-            revolucionaria tendencia en el mundo financiero que se basa en la
-            tecnología de blockchain y criptomonedas para ofrecer servicios
-            financieros de manera descentralizada y sin intermediarios.
-          </li>
-          <li class="list-group-item">
-            En el ecosistema de DeFi, se utilizan contratos inteligentes para
-            crear protocolos y aplicaciones que permiten a los usuarios acceder
-            a una amplia gama de servicios financieros, como préstamos,
-            intercambios, pagos, seguros y más.
-          </li>
-          <li class="list-group-item">
-            Estos protocolos son impulsados por la comunidad y operan en redes
-            públicas de blockchain, lo que significa que cualquier persona puede
-            participar y beneficiarse de ellos sin necesidad de intermediarios
-            tradicionales como bancos u otras instituciones financieras.
-          </li>
-          <li class="list-group-item">
-            Una de las principales características de las Finanzas
-            Descentralizadas es que son abiertas y transparentes. Toda la
-            actividad y los fondos se registran en la cadena de bloques, lo que
-            brinda una mayor seguridad y confianza a los usuarios. Además, las
-            transacciones son rápidas y pueden realizarse en cualquier momento,
-            ya que la red blockchain está disponible las 24 horas del día, los 7
-            días de la semana.
-          </li>
-          <li class="list-group-item">
-            Otro aspecto destacado de DeFi es que es inclusivo. Permite que
-            personas de todo el mundo, incluso aquellas que no tienen acceso a
-            servicios financieros tradicionales, puedan participar en la
-            economía global y acceder a productos financieros avanzados. Sin
-            embargo, como con cualquier tecnología emergente, las Finanzas
-            Descentralizadas también enfrentan desafíos y riesgos. La seguridad
-            de los contratos inteligentes y la protección de los fondos son
-            aspectos críticos que deben abordarse adecuadamente. Además, la
-            regulación en torno a DeFi todavía no está completamente definida,
-            lo que puede plantear incertidumbre en algunos casos. En general,
-            las Finanzas Descentralizadas están transformando la forma en que
-            entendemos y participamos en el sistema financiero global. Su
-            potencial para brindar acceso financiero, eliminar intermediarios y
-            promover la inclusión financiera hace que sean una tendencia
-            emocionante y prometedora para el futuro. Sin embargo, como usuario
-            potencial de DeFi, es esencial comprender los riesgos asociados y
-            adoptar buenas prácticas de seguridad para proteger los activos
-            digitales.
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
+      <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12">
+            <ul class="list-group">
+                <li class="list-group-item">Las Finanzas Descentralizadas, también conocidas como DeFi (Decentralized Finance en inglés), 
+                    son una innovadora y revolucionaria tendencia en el mundo financiero que se basa en la tecnología 
+                    de blockchain y criptomonedas para ofrecer servicios financieros de manera descentralizada y sin
+                     intermediarios.</li>
+                <li class="list-group-item">En el ecosistema de DeFi, se utilizan contratos inteligentes para crear protocolos 
+                    y aplicaciones que permiten a los usuarios acceder a una amplia gama de servicios financieros, como préstamos,
+                     intercambios, pagos, seguros y más</li>
+                <li class="list-group-item">Estos protocolos son impulsados por la comunidad y operan en redes públicas de blockchain, 
+                    lo que significa que cualquier persona puede participar y beneficiarse de ellos sin necesidad de intermediarios 
+                    tradicionales como bancos u otras instituciones financieras.</li>
+                <li class="list-group-item">Una de las principales características de las Finanzas Descentralizadas es que son abiertas
+                     y transparentes. Toda la actividad y los fondos se registran en la cadena de bloques, lo que brinda una mayor 
+                     seguridad y confianza a los usuarios. Además, las transacciones son rápidas y pueden realizarse en cualquier 
+                     momento, ya que la red blockchain está disponible las 24 horas del día, los 7 días de la semana.</li>
+                <li class="list-group-item">Otro aspecto destacado de DeFi es que es inclusivo. Permite que personas de todo el mundo, 
+                    incluso aquellas que no tienen acceso a servicios financieros tradicionales, puedan participar en la economía global 
+                    y acceder a productos financieros avanzados. Sin embargo, como con cualquier tecnología emergente,
+                     las Finanzas Descentralizadas también enfrentan desafíos y riesgos. La seguridad de los contratos 
+                     inteligentes y la protección de los fondos son aspectos críticos que deben abordarse adecuadamente. 
+                     Además, la regulación en torno a DeFi todavía no está completamente definida, lo que puede plantear 
+                     incertidumbre en algunos casos.
+                    
+                    En general, las Finanzas Descentralizadas están transformando la forma en que entendemos y 
+                    participamos en el sistema financiero global. Su potencial para brindar acceso financiero, 
+                    eliminar intermediarios y promover la inclusión financiera hace que sean una tendencia emocionante y
+                     prometedora para el futuro. Sin embargo, como usuario potencial de DeFi, es esencial comprender los riesgos
+                      asociados y adoptar buenas prácticas de seguridad para proteger los activos digitales.</li>
+              </ul>
+            </div>
+        </div>
 
-  {% endblock contenido %}
+
+
+{% endblock contenido %}
+
 </div>
