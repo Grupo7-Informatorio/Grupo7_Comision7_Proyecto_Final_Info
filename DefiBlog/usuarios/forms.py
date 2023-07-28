@@ -16,7 +16,7 @@ class RegisterForm(UserCreationForm):
             'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter your email'}),
             'telefono': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your phone number'}),
             'domicilio': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your address'}),
-            'imagen_perfil': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+            'imagen_perfil': forms.ClearableFileInput(attrs={'class': 'form-control'}), 
         }
         
     def __init__(self, *args, **kwargs):
