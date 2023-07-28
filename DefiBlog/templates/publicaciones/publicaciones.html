@@ -30,15 +30,16 @@
   {% endif %}
 </div>
 
-{% for post in posteos %}
-<<<<<<< HEAD
 
-
+<h6 class="text-center pb-5 pt-5 h1 text-white">SECCION PUBLICACIONES</h6>
 
 <div id="cards">
   <div class="container">
     <div class="row">
-      <h6 class="text-center pb-5 pt-5 h1 text-white">SECCION PUBLICACIONES</h6>
+
+{% for post in posteos %}
+
+      
       <div class="row 4">
         <div class="col-md-4">
           <div class="card w-100 card-border mb-5"> <!--style="width: 18rem;">-->
@@ -50,37 +51,27 @@
               <p class="card-text">{{ post.categoria }}</p>
             </div>
           </div>
-        </div>
-      </div>
-
-    </div>
-
-=======
-<div class="card m-5">
-  <div class="card-header">{{ post.fecha }}</div>
-  <div class="card-body">
-    <h5 class="card-title">{{ post.titulo }}</h5>
-    <p class="card-text">{{ post.post }}</p>
-    <p class="card-text">{{ post.categoria }}</p>
-    <p class="card-text">{{ post.creador }}</p>
-  </div>
-</div>
-
-  <a
+          <a
     href="{% url 'publicaciones:detalle-post' post.id %}"
     class="btn btn-warning"
     >Indagar en profundidad</a
-  >
->>>>>>> 7b73b63309050e36bd76f4a1a43929f8092f255f
+    >
   {% if user.is_superuser or user == post.creador %}
 
     <a href="{% url 'publicaciones:editar-publicacion' post.id %}" class="btn btn-info">Editar</a>
     <a href="{% url 'publicaciones:eliminar-publicacion' post.id %}" class="btn btn-danger">Eliminar</a>
 
   {% endif %}
-</div>
 
-{% endfor %}
+
+        </div>
+        
+        
+        
+        {% endfor %}
+      </div>
+    </div>
+</div>
 
 <div class="pagination">
   <span class="step-links">
