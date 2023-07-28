@@ -1,6 +1,5 @@
 from typing import Any, Dict
-from django.shortcuts import redirect
-from django.shortcuts import render
+from django.shortcuts import redirect, get_object_or_404, render
 from publicaciones.models import Publicaciones, Comentario, Categoria
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.urls import reverse
@@ -113,22 +112,17 @@ class BorrarComentario(SuperusuarioAutorMixin, LoginRequiredMixin, DeleteView):
     def get_success_url(self):
         return reverse('publicaciones:detalle-publicacion', args = [self.object.post.id])
     
-        
+
+
+
 def me_gusta_view(request, pk):
-    if request.method == 'POST':
-        publicacion_id = request.POST.get('publicacion_id')
-        try:
-            publicacion = Publicaciones.objects.get(id=publicacion_id)
-        except Publicaciones.DoesNotExist:
-            # Handle the case when the post does not exist
-            return redirect('publicaciones:detalle-post/publicacion_id')
-
-        user = request.user
-        if user in publicacion.meGusta.all():
-            # User has already liked the post, so remove the like
-            publicacion.meGusta.remove(user)
-        else:
-            # User has not liked the post, so add the like
-            publicacion.meGusta.add(user)
-
-    return redirect('publicaciones:detalle-post/publicacion_id')
+     if request.method == "POST":
+         publicacion_id = request.POST.get('publicacion_id')
+         publicacion = get_object_or_404(Publicaciones, id = publicacion_id)
+         usuario = request.user
+         if publicacion.meGusta.filter(id=usuario.id).exists():
+             publicacion.meGusta.remove(usuario)
+         else:
+             publicacion.meGusta.add(usuario)
+   
+     return redirect('publicaciones:detalle-post' , pk=publicacion_id)
