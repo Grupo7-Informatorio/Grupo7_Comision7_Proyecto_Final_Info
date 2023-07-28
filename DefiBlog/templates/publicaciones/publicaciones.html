@@ -63,19 +63,13 @@
     <p class="card-text">{{ post.post }}</p>
     <p class="card-text">{{ post.categoria }}</p>
     <p class="card-text">{{ post.creador }}</p>
-    
->>>>>>> 7b73b63309050e36bd76f4a1a43929f8092f255f
   </div>
 </div>
 
   <a
-    href="{% url 'publicaciones:detalle-publicacion' post.id %}"
+    href="{% url 'publicaciones:detalle-post' post.id %}"
     class="btn btn-warning"
-<<<<<<< HEAD
-    >Indagar en profundidad</a>
-
-=======
-    >Ver más</a
+    >Indagar en profundidad</a
   >
 >>>>>>> 7b73b63309050e36bd76f4a1a43929f8092f255f
   {% if user.is_superuser or user == post.creador %}
