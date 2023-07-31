@@ -11,6 +11,7 @@
   padding: 30px;
 }
 
+
 footer {
   justify-content: center;
   position: fixed;
@@ -19,7 +20,7 @@ footer {
 }
 
 label {
-  color: antiquewhite;
+  color: rgb(0, 0, 0);
   justify-content: center;
 
 }

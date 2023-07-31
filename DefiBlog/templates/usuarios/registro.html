@@ -1,11 +1,20 @@
-{% extends 'base.html' %} {% block contenido %}
+{% extends 'base.html' %} 
 
-<h2>Crear un usuario</h2>
-<div class="form-group">
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %} {{form.as_p}}
+{% block contenido %}
 
-    <button type="submit" class="btn btn-dark">Registrarse</button>
-  </form>
-</div>
+
+<main class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2 mt-5">
+      <form method="post" class="card card-body">
+        <h2>Crear un usuario</h2>
+        {% csrf_token %}
+        {{form.as_table}}
+      
+        <button type="submit" class="btn btn-primary mt-3">Registrarse</button>
+        </form>
+    </div>
+  </div>
+</main>
+
 {% endblock contenido %}

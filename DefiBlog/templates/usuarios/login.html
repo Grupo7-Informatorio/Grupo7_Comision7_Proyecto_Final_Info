@@ -1,17 +1,22 @@
+
 {% extends 'base.html' %}
 
 {% block contenido %}
 
+<main class="container">
+  <div class="row">
+    <div class="col-md-4 offset-md-4 mt-5">
+      <form method="post" class="card card-body">
+        <h3>¿Ya tienes una cuenta?</h3>
+        {% csrf_token %} 
+        {{form.as_table}}
+      
+        <button type="submit " class="btn btn-primary mt-3">Iniciar sesion</button>
+      </form>
+    </div>
 
-<div class="container mt-3 ">
+  </div>
 
-<span>¿Ya tienes una cuenta?</span>
+</main>
 
-<form method="post">
-  {% csrf_token %} {{form.as_p}}
-
-  <button type="submit " class="btn btn-primary mt-15">Iniciar sesion</button>
-</form>
-
-</div>
 {% endblock contenido %}

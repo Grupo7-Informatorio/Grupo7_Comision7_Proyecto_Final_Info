@@ -8,14 +8,14 @@ class RegisterForm(UserCreationForm):
         model = usuario
         fields = ['first_name', 'last_name', 'username', 'password1', 'password2', 'email', 'telefono', 'domicilio','imagen_perfil'] 
         widgets = {
-            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your first name'}),
-            'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your last name'}),
-            'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter a username'}),
-            'password1': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Enter a password'}),
-            'password2': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirm your password'}),
-            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter your email'}),
-            'telefono': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your phone number'}),
-            'domicilio': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your address'}),
+            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su nombre'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su apellido'}),
+            'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su nombre de usuario'}),
+            'password1': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su contraseña'}),
+            'password2': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirme su contraseña'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su e-mail'}),
+            'telefono': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su numero de telefono'}),
+            'domicilio': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su direccion'}),
             'imagen_perfil': forms.ClearableFileInput(attrs={'class': 'form-control'}), 
         }
         
@@ -27,9 +27,9 @@ class RegisterForm(UserCreationForm):
                 field.widget.attrs['class'] = 'form-control'
 
         # Customize the password field widget
-        self.fields['password1'].widget = forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Enter a password'})
-        self.fields['password2'].widget = forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirm your password'})
+        self.fields['password1'].widget = forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su contraseña'})
+        self.fields['password2'].widget = forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirme su contraseña'})
 
 class CustomLoginForm(AuthenticationForm):
-    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your username'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Enter your password'}))
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su nombre de usuario'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su contraseña'}))

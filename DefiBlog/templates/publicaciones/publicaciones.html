@@ -1,106 +1,132 @@
-{% extends 'base.html' %} {% load static %} {% block contenido %}
-<h1>Bienvenido!</h1>
-<h2>Aquí pon tu Publicación</h2>
+{% extends 'base.html' %} 
 
-<form action="" method="get">
-  <select name="categoria" id="">
-    <option value="">Todas</option>
-    {% for categoria in categorias %}
-      <option value="{{categoria.id}}" {% if categoria.id|stringformat:"s" == request.GET.categoria %}selected{% endif %}>{{categoria.nombre}}</option>
-    {% endfor %}
-  </select>
+{% load static %} 
 
+{% block contenido %}
 
-  <select name="orderby" id="">
-    <option value="">Ordenar por</option>
-    <option value="fecha_asc" {% if 'fecha_asc' == request.GET.orderby %}selected{% endif %}>Fecha ascendente</option>
-    <option value="fecha_desc" {% if 'fecha_desc' == request.GET.orderby %}selected{% endif %}>Fecha descendente</option>
-    <option value="alf_asc" {% if 'alf_asc' == request.GET.orderby %}selected{% endif %}>Alfabeticamente ascendente</option>
-    <option value="alf_desc" {% if 'alf_desc' == request.GET.orderby %}selected{% endif %}>Alfabeticamente descendente</option>
-  </select>
+<body>
+  <main>
+    <section class="container bg-light">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h2 class="text-dark pt-3">BIENVENIDO</h2>
+          <h3 class=" pb-5 pt-2 text-dark">Seccion Publicaciones</h3>
+          
+          <div class=" pl-5 pt-3">
+            <form action="" method="get">
+              <select name="categoria" id="">
+                <option value="">Todas</option>
+                {% for categoria in categorias %}
+                  <option value="{{categoria.id}}" {% if categoria.id|stringformat:"s" == request.GET.categoria %}selected{% endif %}>{{categoria.nombre}}</option>
+                {% endfor %}
+              </select>
+            
+            
+              <select name="orderby" id="">
+                <option value="">Ordenar por</option>
+                <option value="fecha_asc" {% if 'fecha_asc' == request.GET.orderby %}selected{% endif %}>Fecha ascendente</option>
+                <option value="fecha_desc" {% if 'fecha_desc' == request.GET.orderby %}selected{% endif %}>Fecha descendente</option>
+                <option value="alf_asc" {% if 'alf_asc' == request.GET.orderby %}selected{% endif %}>Alfabeticamente ascendente</option>
+                <option value="alf_desc" {% if 'alf_desc' == request.GET.orderby %}selected{% endif %}>Alfabeticamente descendente</option>
+              </select>
 
-  <button type="submit">Filtrar</button>
-</form>
-
-<div class="d-grid gap-2">
-  {% if user.is_authenticated and user.es_colaborador or user.is_superuser %}
-  <a href="{% url 'publicaciones:crear-publicacion' %}" class="btn btn-primary"
-    >Postear algo nuevo!</a
-  >
-  {% endif %}
-</div>
-
-
-<h6 class="text-center pb-5 pt-5 h1 text-white">SECCION PUBLICACIONES</h6>
-
-<div id="cards">
-  <div class="container">
-    <div class="row">
-
-{% for post in posteos %}
+              <button class="btn btn-success">Filtrar</button> 
+            </form>
+          </div>
+        </div>
 
       
-      <div class="row 4">
-        <div class="col-md-4">
-          <div class="card w-100 card-border mb-5"> <!--style="width: 18rem;">-->
-            <div class="card-body">
-              <img src="{% static 'img/carr02.jpg' %}" class="card-img-top" alt="prueba">
-              <p class="card-text">{{ post.fecha }}</p>
-              <p class="card-text">{{ post.titulo }}</p>
-              <p class="card-title">{{ post.post}}</p>
-              <p class="card-text">{{ post.categoria }}</p>
-            </div>
-          </div>
-          <a
-    href="{% url 'publicaciones:detalle-post' post.id %}"
-    class="btn btn-warning"
-    >Indagar en profundidad</a
-    >
-  {% if user.is_superuser or user == post.creador %}
-
-    <a href="{% url 'publicaciones:editar-publicacion' post.id %}" class="btn btn-info">Editar</a>
-    <a href="{% url 'publicaciones:eliminar-publicacion' post.id %}" class="btn btn-danger">Eliminar</a>
-
-  {% endif %}
-
-
-        </div>
-        
-        
-        
-        {% endfor %}
       </div>
+    </section>
+
+    <!----------posteo nuevo ------------>
+      
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col text-center">
+      
+          {% if user.is_authenticated and user.es_colaborador or user.is_superuser %}
+      
+          <a href="{% url 'publicaciones:crear-publicacion' %}" class="btn btn-primary mt-3">Postear algo nuevo!</a
+            >
+          {% endif %}
+      </div>
+    </section>
+      
+  
+<!-----------tarjeta------------>
+
+
+{% for post in posteos %}
+  <div class="row row-cols-3 g-4">
+    <div class="card-group">
+      <div class="card h-100">
+        <img src="{% static 'img/carr03.jpg' %}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{ post.titulo }}</h5>
+          <p class="card-text">{{ post.post}}.</p>
+          <p class="card-text">{{ post.categoria }}</p>
+          <p class="card-text">{{ post.fecha }}</p>
+          <a href="{% url 'publicaciones:detalle-post' post.id %}" class="btn btn-warning btn btn-sm">Indagar en
+            profundidad</a>
+        
+            {% if user.is_superuser or user == post.creador %}
+      
+               <a href="{% url 'publicaciones:editar-publicacion' post.id %}" class="btn btn-info btn btn-sm">Editar</a>
+              <a href="{% url 'publicaciones:eliminar-publicacion' post.id %}" class="btn btn-danger btn btn-sm">Eliminar</a>
+      
+            {% endif %}
+          
+        </div>
+  
+  
+  
+  
+  
     </div>
-</div>
+  </div>
 
-<div class="pagination">
-  <span class="step-links">
-    {% if page_obj.has_previous %}
-    <a
-      href="?page=1{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}{% if request.GET.orderby %}&orderby={{ request.GET.orderby }}{% endif %}"
-      >&laquo; first</a
-    >
-    <a
-      href="?page={{ page_obj.previous_page_number }}{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}{% if request.GET.orderby %}&orderby={{ request.GET.orderby }}{% endif %}"
-      >previous</a
-    >
-    {% endif %}
+{% endfor %}
+    
+  
+<!--------paginador--------->    
+  
+      <div class="pagination">
+        <span class="step-links">
+          {% if page_obj.has_previous %}
+          <a
+            href="?page=1{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}{% if request.GET.orderby %}&orderby={{ request.GET.orderby }}{% endif %}"
+            >&laquo; first</a
+          >
+          <a
+            href="?page={{ page_obj.previous_page_number }}{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}{% if request.GET.orderby %}&orderby={{ request.GET.orderby }}{% endif %}"
+            >previous</a
+          >
+          {% endif %}
+      
+          <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+          </span>
+      
+          {% if page_obj.has_next %}
+          <a
+            href="?page={{ page_obj.next_page_number }}{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}{% if request.GET.orderby %}&orderby={{ request.GET.orderby }}{% endif %}"
+            >next</a
+          >
+          <a
+            href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}{% if request.GET.orderby %}&orderby={{ request.GET.orderby }}{% endif %}"
+            >last &raquo;</a
+          >
+          {% endif %}
+        </span>
+      </div>
+      
+    
+    {% endblock contenido %}
+    
 
-    <span class="current">
-      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-    </span>
+  </main>
+</body>  
 
-    {% if page_obj.has_next %}
-    <a
-      href="?page={{ page_obj.next_page_number }}{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}{% if request.GET.orderby %}&orderby={{ request.GET.orderby }}{% endif %}"
-      >next</a
-    >
-    <a
-      href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}{% if request.GET.orderby %}&orderby={{ request.GET.orderby }}{% endif %}"
-      >last &raquo;</a
-    >
-    {% endif %}
-  </span>
-</div>
 
-{% endblock contenido %}
