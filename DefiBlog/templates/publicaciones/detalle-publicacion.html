@@ -11,11 +11,11 @@
       {% csrf_token %}
       <input type="hidden" name="publicacion_id" value="{{post.id}}" />
       {% if user in post.meGusta.all %}
-      <button type="submit" class="btn btn-danger">
-        <i class="fa-regular fa-thumbs-down"></i>
+      <button type="submit" class="btn btn-success">
+        <i class="fa-regular fa-thumbs-up"></i>
       </button>
       {% else %}
-      <button type="submit" class="btn btn-success">
+      <button type="submit" class="btn">
         <i class="fa-regular fa-thumbs-up"></i>
       </button>
       {% endif %}
@@ -24,42 +24,32 @@
   </div>
 </div>
 
-
-{% block contenido %}
-
-
-  <div class="card" style="width: 18rem">
-    <div class="card-body">
-      <p class="card-text">{{post.fecha}}</p>
-      <h6>{{post.creador}}</h6>
-      <h5 class="card-title">{{ post.titulo }}</h5>
-      <p class="card-text">{{post.post}}</p>
-    </div>
-  </div>
-
-  <div class="comentarios-container">
-    <h2>Comentarios</h2>
-
-  {% for comentario in post.comentarios.all %}
-  <div class="card">
-    <div class="card-body">
-      <h6>{{comentario.creador.username}}</h6>
-      <p>{{comentario.texto}}</p>
-
+<div class="comentarios-container">
+  <h2>Comentarios</h2>
+  <ul class="list-group">
+    {% for comentario in post.comentarios.all %}
+    <li class="list-group-item list-group-item-info">
+      {{comentario.creador.username}}
+    </li>
+    <li
+      class="list-group-item justify-content-between d-flex align-items-center mb-2"
+    >
+      {{comentario.texto}} <br />
       {% if user.is_superuser or user == comentario.creador %}
       <a href="{% url 'publicaciones:borrar-comentario' comentario.id %}"
         ><i class="fa-solid fa-trash"></i
       ></a>
       {% endif %}
-    </div>
-  </div>
-  {% endfor %}
+    </li>
+
+    {% endfor %}
+  </ul>
 </div>
 
-{% if user.is_authenticated %}
 <form method="post">
   {% csrf_token %} {{ comentario_form }}
 
   <button type="submit">Comentar</button>
 </form>
-{% endif %} {% endblock contenido %}
+
+{% endblock contenido %}

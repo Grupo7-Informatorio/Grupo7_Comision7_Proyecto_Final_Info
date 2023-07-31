@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PROYECTO FINAL</title>
     <!-- estilos -->
-    <link rel="stylesheet" href="{% static 'css/estilos.css' %}" />
+
+    <link rel="stylesheet" href="{% static 'css/cssReset.css' %}" />
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
@@ -15,24 +16,25 @@
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
       crossorigin="anonymous"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tektur:wght@500;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}" />
     <script
       src="https://kit.fontawesome.com/be59a90cf1.js"
       crossorigin="anonymous"
     ></script>
   </head>
 
-  
-
-<!---------navbar ---------->
-
   <body id="cuerpo">
-    
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-          <img src="{% static 'img/logo.png' %}" alt="logo" width="70">
+        <a class="navbar-brand navTextLogo" href="{% url 'index' %}">
+          DescentraBlog
         </a>
-        <a class="navbar-brand" href="{% url 'index' %}">INICIO</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -47,53 +49,37 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a
-                class="nav-link active"
-                aria-current="page"
-                href="{% url 'categorias' %}"
-                >Categorias</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'integrantes' %}">Acerca de</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="{% url 'publicaciones:publicaciones' %}"
                 >Publicaciones</a
               >
             </li>
             {% if user.is_authenticated %}
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
+
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'contacto:enviar-mensaje' %}"
+                >Contacto</a
               >
-                {{user.username}}
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="http://127.0.0.1:8000/login/logout/"
-                    >Cerrar sesion</a
-                  >
-                </li>
-              </ul>
             </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">{{user.username}}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'usuarios:logout' %}"
+                >Cerrar Sesion</a
+              >
+            </li>
+
             {% else %}
             <a
               class="nav-link active"
               aria-current="page"
-              href="http://127.0.0.1:8000/login/"
+              href="{% url 'usuarios:login' %}"
               >Iniciar Sesion</a
             >
             <a
               class="nav-link active"
               aria-current="page"
-              href="http://127.0.0.1:8000/login/registro/"
+              href="{% url 'usuarios:registro' %}"
               >Registrarse</a
             >
             {% endif %}
@@ -102,25 +88,25 @@
       </div>
     </nav>
 
-    
+    {% block contenido %} {% endblock contenido %}
 
-    {% block contenido %} 
-    
-    
-    {% endblock contenido %}
+
+    <!--------  FOOTER------>
 
 
     <!--------  FOOTER------>
 
     <div class="container-fluid">
       <footer class="footer bg-dark text-center text-white">
-        <div class="text-center p" style="background-color: rgba(20, 160, 225, 0.695)">
+        <div
+          class="text-center p"
+          style="background-color: rgba(20, 160, 225, 0.695)"
+        >
           COMISION 7:
-          <a class="text-white" href="#">GRUPO 7</a>
+          <a class="text-white" href="{% url 'integrantes' %}">GRUPO 7</a>
         </div>
       </footer>
     </div>
-  
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
