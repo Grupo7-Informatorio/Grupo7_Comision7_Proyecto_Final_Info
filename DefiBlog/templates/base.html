@@ -64,7 +64,7 @@
               <a href="#" class="nav-link">{{user.username}}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="http://127.0.0.1:8000/login/logout/"
+              <a class="nav-link" href="{% url 'usuarios:logout' %}"
                 >Cerrar Sesion</a
               >
             </li>
@@ -73,13 +73,13 @@
             <a
               class="nav-link active"
               aria-current="page"
-              href="http://127.0.0.1:8000/login/"
+              href="{% url 'usuarios:login' %}"
               >Iniciar Sesion</a
             >
             <a
               class="nav-link active"
               aria-current="page"
-              href="http://127.0.0.1:8000/login/registro/"
+              href="{% url 'usuarios:registro' %}"
               >Registrarse</a
             >
             {% endif %}

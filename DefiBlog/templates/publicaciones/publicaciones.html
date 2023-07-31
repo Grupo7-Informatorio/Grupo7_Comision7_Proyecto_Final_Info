@@ -40,17 +40,15 @@
 
 
 <div class="container text-center">
-  <div class="row align-items-start">
-    <div class="row">
+  <div class="row justify-content-center">
       {% for post in posteos %}
-          <div class="card text-center col-xl-6 col-sm-12">
+          <div class="card text-center col-xl-5 col-sm-12 m-2">
             <div class="card-header">
-              {{post.creador}}
+              Autor: {{post.creador}}
             </div>
             <div class="card-body ">
               <h5 class="card-title">{{ post.titulo }}</h5>
-              <p class="m-0">{{ post.categoria }}</p>
-              <img src="{% static 'img/carr02.jpg' %}" width="300px" alt="prueba">
+              <p class="m-0">Categoría: {{ post.categoria }}</p>
               <!-- Display the number of likes -->
               <p>Likes: {{ post.num_likes }}</p>
               <a href="{% url 'publicaciones:detalle-post' post.id %}"class="btn btn-warning mb-2" >Ver más</a>
@@ -63,7 +61,6 @@
           </div>
             {% endfor %}
        
-      </div>
     </div>
 </div>
 
