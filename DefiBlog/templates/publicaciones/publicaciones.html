@@ -1,29 +1,35 @@
 {% extends 'base.html' %} {% load static %} {% block contenido %}
 <h6 class="text-center pb-5 pt-5 h1 text-white">SECCION PUBLICACIONES</h6>
 
-<form action="" method="get">
-  <select name="categoria" id="">
-    <option value="">Todas</option>
-    {% for categoria in categorias %}
-      <option value="{{categoria.id}}" {% if categoria.id|stringformat:"s" == request.GET.categoria %}selected{% endif %}>{{categoria.nombre}}</option>
-    {% endfor %}
-  </select>
+<form action="" method="get" class="form-inline">
+  <div class="row justify-content-center">
+    <div class="col">
+      <select class="form-control mb-2" name="categoria" id="">
+        <option value="">Todas</option>
+        {% for categoria in categorias %}
+          <option value="{{categoria.id}}" {% if categoria.id|stringformat:"s" == request.GET.categoria %}selected{% endif %}>{{categoria.nombre}}</option>
+        {% endfor %}
+      </select>
+    </div>
 
+    <div class="col-xl">
+      <select class="form-control mb-2" name="orderby" id="">
+        <option value="">Ordenar por</option>
+        <option value="fecha_asc" {% if 'fecha_asc' == request.GET.orderby %}selected{% endif %}>Fecha ascendente</option>
+        <option value="fecha_desc" {% if 'fecha_desc' == request.GET.orderby %}selected{% endif %}>Fecha descendente</option>
+        <option value="alf_asc" {% if 'alf_asc' == request.GET.orderby %}selected{% endif %}>Alfabeticamente ascendente</option>
+        <option value="alf_desc" {% if 'alf_desc' == request.GET.orderby %}selected{% endif %}>Alfabeticamente descendente</option>
+        <option value="likes_asc" {% if 'likes_asc' == request.GET.orderby %}selected{% endif %}>Menos gustado</option>
+        <option value="likes_desc" {% if 'likes_desc' == request.GET.orderby %}selected{% endif %}>Más gustado</option>
+      </select>
+    </div>
+    <div class="col">
+      <button class="btn btn-primary mb-2" type="submit">Filtrar</button>
+    </div>
+    </form>
+  </div>
 
-  <select name="orderby" id="">
-    <option value="">Ordenar por</option>
-    <option value="fecha_asc" {% if 'fecha_asc' == request.GET.orderby %}selected{% endif %}>Fecha ascendente</option>
-    <option value="fecha_desc" {% if 'fecha_desc' == request.GET.orderby %}selected{% endif %}>Fecha descendente</option>
-    <option value="alf_asc" {% if 'alf_asc' == request.GET.orderby %}selected{% endif %}>Alfabeticamente ascendente</option>
-    <option value="alf_desc" {% if 'alf_desc' == request.GET.orderby %}selected{% endif %}>Alfabeticamente descendente</option>
-    <option value="likes_asc" {% if 'likes_asc' == request.GET.orderby %}selected{% endif %}>Menos gustado</option>
-    <option value="likes_desc" {% if 'likes_desc' == request.GET.orderby %}selected{% endif %}>Más gustado</option>
-  </select>
-
-  <button type="submit">Filtrar</button>
-</form>
-
-<div class="d-grid gap-2">
+<div class="d-grid gap-2 mb-2">
   {% if user.is_authenticated and user.es_colaborador or user.is_superuser %}
   <a href="{% url 'publicaciones:crear-publicacion' %}" class="btn btn-primary"
     >Postear algo nuevo!</a
@@ -36,57 +42,63 @@
 <div class="container text-center">
   <div class="row align-items-start">
     <div class="row">
-    
-
-        {% for post in posteos %}
-          <div class="card col-xl-6 col-sm-12">
+      {% for post in posteos %}
+          <div class="card text-center col-xl-6 col-sm-12">
+            <div class="card-header">
+              {{post.creador}}
+            </div>
             <div class="card-body ">
-              <p >{{ post.categoria }}</p>
-              <p >{{ post.fecha }}</p>
+              <h5 class="card-title">{{ post.titulo }}</h5>
+              <p class="m-0">{{ post.categoria }}</p>
               <img src="{% static 'img/carr02.jpg' %}" width="300px" alt="prueba">
-              <p >{{ post.titulo }}</p>
               <!-- Display the number of likes -->
               <p>Likes: {{ post.num_likes }}</p>
-              <a href="{% url 'publicaciones:detalle-post' post.id %}"class="btn btn-warning" >Indagar en profundidad</a>
+              <a href="{% url 'publicaciones:detalle-post' post.id %}"class="btn btn-warning mb-2" >Ver más</a>
               {% if user.is_superuser or user == post.creador %}
-                <a href="{% url 'publicaciones:editar-publicacion' post.id %}" class="btn btn-info">Editar</a>
-                <a href="{% url 'publicaciones:eliminar-publicacion' post.id %}" class="btn btn-danger">Eliminar</a>
+                <a href="{% url 'publicaciones:editar-publicacion' post.id %}" class="btn btn-info mb-2">Editar</a>
+                <a href="{% url 'publicaciones:eliminar-publicacion' post.id %}" class="btn btn-danger mb-2">Eliminar</a>
               {% endif %}
+              <div class="card-footer text-muted">{{ post.fecha }}</div>
             </div>
           </div>
             {% endfor %}
+       
       </div>
     </div>
 </div>
 
-<div class="pagination">
-  <span class="step-links">
+
+<nav class="mt-2" aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
     {% if page_obj.has_previous %}
-    <a
+    <li class="page-item">
+    <a class="page-link"
       href="?page=1{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}{% if request.GET.orderby %}&orderby={{ request.GET.orderby }}{% endif %}"
-      >&laquo; first</a
+      ><<</a
     >
-    <a
-      href="?page={{ page_obj.previous_page_number }}{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}{% if request.GET.orderby %}&orderby={{ request.GET.orderby }}{% endif %}"
-      >previous</a
-    >
+  </li>
+    <li class="page-item">
+      <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}{% if request.GET.orderby %}&orderby={{ request.GET.orderby }}{% endif %}" tabindex="-1"><</a>
+    </li>
     {% endif %}
-
-    <span class="current">
-      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-    </span>
-
+    
+    {% for page_number in page_obj.paginator.page_range %}
+      <li class="page-item {% if page_obj.number == page_number %}active{% endif %}">
+        <a class="page-link" href="?page={{ page_number }}{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}{% if request.GET.orderby %}&orderby={{ request.GET.orderby }}{% endif %}">{{ page_number }}</a>
+      </li>
+    {% endfor %}
     {% if page_obj.has_next %}
-    <a
-      href="?page={{ page_obj.next_page_number }}{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}{% if request.GET.orderby %}&orderby={{ request.GET.orderby }}{% endif %}"
-      >next</a
-    >
-    <a
+    <li class="page-item">
+      <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}{% if request.GET.orderby %}&orderby={{ request.GET.orderby }}{% endif %}">></a>
+    </li>
+    <li class="page-item">
+    <a class="page-link"
       href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.categoria %}&categoria={{ request.GET.categoria }}{% endif %}{% if request.GET.orderby %}&orderby={{ request.GET.orderby }}{% endif %}"
-      >last &raquo;</a
+      >>></a
     >
+  </li>
     {% endif %}
-  </span>
-</div>
+  </ul>
+</nav>
 
 {% endblock contenido %}

@@ -1,8 +1,11 @@
-
-
-
 #cuerpo {
   background-image: url(../img/DeFi.webp);
+  background: linear-gradient(
+    0deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 9, 121, 1) 22%,
+    rgba(13, 110, 253, 1) 100%
+  );
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -15,6 +18,7 @@
 footer {
   justify-content: center;
   position: fixed;
+  left: 0;
   bottom: 0;
   width: 100%;
 }
@@ -22,9 +26,7 @@ footer {
 label {
   color: antiquewhite;
   justify-content: center;
-
 }
-
 
 #integrantes {
   font-size: 26px;
@@ -47,14 +49,11 @@ span {
 }
 
 p {
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   min-height: 10vh;
-
 }
-
-
 
 .button {
   color: #000000;
@@ -67,32 +66,22 @@ p {
   height: 45px;
   outline: none;
   width: 10%;
-  background: rgba(255,255,255,0.7);
+  background: rgba(255, 255, 255, 0.7);
   cursor: pointer;
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .button:hover {
   box-shadow: 5px 10px 10px 2px rgba(236, 230, 230, 0.2);
 }
 
-
-
-
-.card-border {
-  border: solid 10px white;
-  border-radius: 20px;
-  overflow: hidden;
-  transition: all ease-out 0.2s;
-}
-
-.card-border:hover{
-  transform: scale(1.02);
-}
-
 .col-sm {
-  background: rgb(255,255,255);
-  background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgb(114, 17, 218) 60%);
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgb(114, 17, 218) 60%
+  );
   background-repeat: repeat-x;
   background-size: 75%;
   margin-top: -20px;
