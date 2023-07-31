@@ -11,11 +11,11 @@
       {% csrf_token %}
       <input type="hidden" name="publicacion_id" value="{{post.id}}" />
       {% if user in post.meGusta.all %}
-      <button type="submit" class="btn">
+      <button type="submit" class="btn btn-success">
         <i class="fa-regular fa-thumbs-up"></i>
       </button>
       {% else %}
-      <button type="submit" class="btn btn-success">
+      <button type="submit" class="btn">
         <i class="fa-regular fa-thumbs-up"></i>
       </button>
       {% endif %}
