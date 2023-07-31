@@ -6,6 +6,7 @@ from django.urls import reverse
 from .forms import CrearPublicacionForm, ComentarioForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from core.mixins import SuperusuarioAutorMixin, ColaboradorMixin
+from django.db.models import Count
 
 
 # Create your views here.
@@ -22,6 +23,9 @@ class VerPublicaciones(ListView):
     
     def get_queryset(self):
         queryset = super().get_queryset()
+
+        # Annotate the queryset with the number of likes for each post
+        queryset = queryset.annotate(num_likes=Count('meGusta'))
         
         categoria_seleccionada = self.request.GET.get('categoria')
         queryset = queryset.order_by('-fecha')
@@ -38,6 +42,10 @@ class VerPublicaciones(ListView):
                 queryset = queryset.order_by('titulo')
             elif orden == 'alf_desc':
                 queryset = queryset.order_by('-titulo')
+            elif orden == 'likes_asc':
+                queryset = queryset.order_by('num_likes')
+            elif orden == 'likes_desc':
+                queryset = queryset.order_by('-num_likes')
 
         return queryset
 
@@ -90,6 +98,10 @@ class DetallePublicacion(DetailView):
         return context
     
     def post(self, request, *args, **kwargs):
+
+        if not self.request.user.is_authenticated:
+            return redirect('usuarios:login')
+
         publicacion = self.get_object()
         form = ComentarioForm(request.POST)
 
