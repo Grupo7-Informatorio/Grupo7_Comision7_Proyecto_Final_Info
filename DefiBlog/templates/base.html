@@ -21,13 +21,11 @@
     ></script>
   </head>
 
-  
   <body id="cuerpo">
-    
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
-          <img src="{% static 'img/logo.png' %}" alt="logo" width="70">
+          <img src="{% static 'img/logo.png' %}" alt="logo" width="70" />
         </a>
         <a class="navbar-brand" href="{% url 'index' %}">INICIO</a>
         <button
@@ -54,31 +52,25 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'integrantes' %}">Acerca de</a>
             </li>
+
             <li class="nav-item">
               <a class="nav-link" href="{% url 'publicaciones:publicaciones' %}"
                 >Publicaciones</a
               >
             </li>
             {% if user.is_authenticated %}
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
+
+            <a href="#" class="nav-link">{{user.username}}</a>
+
+            <li class="nav-item">
+              <a class="nav-link" href="http://127.0.0.1:8000/login/logout/"
+                >Cerrar Sesion</a
               >
-                {{user.username}}
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="http://127.0.0.1:8000/login/logout/"
-                    >Cerrar sesion</a
-                  >
-                </li>
-              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'contacto:enviar-mensaje' %}"
+                >Contacto</a
+              >
             </li>
             {% else %}
             <a
@@ -99,22 +91,19 @@
       </div>
     </nav>
 
-    
-
-    {% block contenido %} 
-    
-    
-    {% endblock contenido %}
+    {% block contenido %} {% endblock contenido %}
 
     <div class="container-fluid">
       <footer class="footer bg-dark text-center text-white">
-        <div class="text-center p" style="background-color: rgba(20, 160, 225, 0.695)">
+        <div
+          class="text-center p"
+          style="background-color: rgba(20, 160, 225, 0.695)"
+        >
           COMISION 7:
           <a class="text-white" href="#">GRUPO 7</a>
         </div>
       </footer>
     </div>
-  
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"

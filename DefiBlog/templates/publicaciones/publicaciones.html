@@ -1,6 +1,5 @@
 {% extends 'base.html' %} {% load static %} {% block contenido %}
-<h1>Bienvenido!</h1>
-<h2>Aquí pon tu Publicación</h2>
+<h6 class="text-center pb-5 pt-5 h1 text-white">SECCION PUBLICACIONES</h6>
 
 <form action="" method="get">
   <select name="categoria" id="">
@@ -17,6 +16,8 @@
     <option value="fecha_desc" {% if 'fecha_desc' == request.GET.orderby %}selected{% endif %}>Fecha descendente</option>
     <option value="alf_asc" {% if 'alf_asc' == request.GET.orderby %}selected{% endif %}>Alfabeticamente ascendente</option>
     <option value="alf_desc" {% if 'alf_desc' == request.GET.orderby %}selected{% endif %}>Alfabeticamente descendente</option>
+    <option value="likes_asc" {% if 'likes_asc' == request.GET.orderby %}selected{% endif %}>Menos gustado</option>
+    <option value="likes_desc" {% if 'likes_desc' == request.GET.orderby %}selected{% endif %}>Más gustado</option>
   </select>
 
   <button type="submit">Filtrar</button>
@@ -31,44 +32,29 @@
 </div>
 
 
-<h6 class="text-center pb-5 pt-5 h1 text-white">SECCION PUBLICACIONES</h6>
 
-<div id="cards">
-  <div class="container">
+<div class="container text-center">
+  <div class="row align-items-start">
     <div class="row">
+    
 
-{% for post in posteos %}
-
-      
-      <div class="row 4">
-        <div class="col-md-4">
-          <div class="card w-100 card-border mb-5"> <!--style="width: 18rem;">-->
-            <div class="card-body">
-              <img src="{% static 'img/carr02.jpg' %}" class="card-img-top" alt="prueba">
-              <p class="card-text">{{ post.fecha }}</p>
-              <p class="card-text">{{ post.titulo }}</p>
-              <p class="card-title">{{ post.post}}</p>
-              <p class="card-text">{{ post.categoria }}</p>
+        {% for post in posteos %}
+          <div class="card col-xl-6 col-sm-12">
+            <div class="card-body ">
+              <p >{{ post.categoria }}</p>
+              <p >{{ post.fecha }}</p>
+              <img src="{% static 'img/carr02.jpg' %}" width="300px" alt="prueba">
+              <p >{{ post.titulo }}</p>
+              <!-- Display the number of likes -->
+              <p>Likes: {{ post.num_likes }}</p>
+              <a href="{% url 'publicaciones:detalle-post' post.id %}"class="btn btn-warning" >Indagar en profundidad</a>
+              {% if user.is_superuser or user == post.creador %}
+                <a href="{% url 'publicaciones:editar-publicacion' post.id %}" class="btn btn-info">Editar</a>
+                <a href="{% url 'publicaciones:eliminar-publicacion' post.id %}" class="btn btn-danger">Eliminar</a>
+              {% endif %}
             </div>
           </div>
-          <a
-    href="{% url 'publicaciones:detalle-post' post.id %}"
-    class="btn btn-warning"
-    >Indagar en profundidad</a
-    >
-  {% if user.is_superuser or user == post.creador %}
-
-    <a href="{% url 'publicaciones:editar-publicacion' post.id %}" class="btn btn-info">Editar</a>
-    <a href="{% url 'publicaciones:eliminar-publicacion' post.id %}" class="btn btn-danger">Eliminar</a>
-
-  {% endif %}
-
-
-        </div>
-        
-        
-        
-        {% endfor %}
+            {% endfor %}
       </div>
     </div>
 </div>
