@@ -86,3 +86,7 @@ p {
   background-size: 75%;
   margin-top: -20px;
 }
+
+.navTextLogo {
+  font-family: "Tektur", cursive;
+}

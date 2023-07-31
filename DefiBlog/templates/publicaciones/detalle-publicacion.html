@@ -26,22 +26,24 @@
 
 <div class="comentarios-container">
   <h2>Comentarios</h2>
-
-  {% for comentario in post.comentarios.all %}
-  <div class="card">
-    <div class="card-body">
-      <h6>{{comentario.creador.username}}</h6>
-      <p>{{comentario.texto}}</p>
-
+  <ul class="list-group">
+    {% for comentario in post.comentarios.all %}
+    <li class="list-group-item list-group-item-info">
+      {{comentario.creador.username}}
+    </li>
+    <li
+      class="list-group-item justify-content-between d-flex align-items-center mb-2"
+    >
+      {{comentario.texto}} <br />
       {% if user.is_superuser or user == comentario.creador %}
       <a href="{% url 'publicaciones:borrar-comentario' comentario.id %}"
         ><i class="fa-solid fa-trash"></i
       ></a>
-
       {% endif %}
-    </div>
-  </div>
-  {% endfor %}
+    </li>
+
+    {% endfor %}
+  </ul>
 </div>
 
 <form method="post">
