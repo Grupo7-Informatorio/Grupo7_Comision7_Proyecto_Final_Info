@@ -9,7 +9,6 @@
     <!-- estilos -->
 
     <link rel="stylesheet" href="{% static 'css/cssReset.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/estilos.css' %}" />
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
@@ -17,6 +16,13 @@
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
       crossorigin="anonymous"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tektur:wght@500;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}" />
     <script
       src="https://kit.fontawesome.com/be59a90cf1.js"
       crossorigin="anonymous"
@@ -26,8 +32,8 @@
   <body id="cuerpo">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'index' %}">
-          <img src="{% static 'img/logo.png' %}" alt="logo" width="70" />
+        <a class="navbar-brand navTextLogo" href="{% url 'index' %}">
+          DescentraBlog
         </a>
         <button
           class="navbar-toggler"
