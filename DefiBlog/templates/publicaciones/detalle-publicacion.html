@@ -14,8 +14,8 @@
             </div>
             <p class="card-text">{{post.post}}</p>
           </div>
-          <img src="{{post.imagen_post.url}}" alt="Imagen del post">
-          {% if post.image_post %}
+
+          {% if post.image_post.url %}
           <img src="{{post.imagen_post.url}}" alt="Imagen del post">
           {% endif %}
             
