@@ -12,6 +12,7 @@ _Para obtener una copia del proyecto funcionando en tu PC de manera local para p
 ### Pre-requisitos 📋
 
 Python 3.10 o superior https://www.python.org/downloads/
+
 Pip
 
 
