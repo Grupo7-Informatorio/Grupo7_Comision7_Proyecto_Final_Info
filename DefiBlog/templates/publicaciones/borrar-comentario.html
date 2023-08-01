@@ -1,8 +1,21 @@
-{% extends 'base.html' %} {% block contenido %}
-<form method="post">
-  {% csrf_token %}
+{% extends 'base.html' %}
 
-  <p>Estas a punto de eliminar el comentario</p>
-  <button type="submit" class="btn btn-success">Eliminar</button>
-</form>
+{% block contenido %}
+
+<main class="container text-center">
+  <div class="row">
+    <div class="col-md-4 offset-md-4 mt-5">
+    <form method="post" class="card card-body">
+      {% csrf_token %}
+      <h6>Estas a punto de eliminar el comentario</h6>
+      <button type="submit" class="btn btn-danger mt-3">Eliminar</button>
+    </form>
+
+  </div>
+
+</main>
+
+
+
+
 {% endblock contenido %}

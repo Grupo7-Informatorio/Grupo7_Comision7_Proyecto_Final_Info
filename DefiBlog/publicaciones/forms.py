@@ -13,8 +13,8 @@ class CrearPublicacionForm(forms.ModelForm):
         }
         widgets = {
             'categoria': forms.Select(attrs={'class': 'form-control'}),
-            'titulo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter the title'}),
-            'post': forms.Textarea(attrs={'class': 'form-control', 'rows': 4, 'placeholder': 'Write your post here'}),
+            'titulo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Titulo'}),
+            'post': forms.Textarea(attrs={'class': 'form-control', 'rows': 4, 'placeholder': 'Escriba su post aqui'}),
         }
 
 class ComentarioForm(forms.ModelForm):

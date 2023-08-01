@@ -1,55 +1,94 @@
-{% extends 'base.html' %} {% block contenido %}
-<div class="card">
-  <div class="card-body">
-    <p class="card-text">{{post.fecha}}</p>
-    <h6>{{post.creador}}</h6>
-    <h5 class="card-title">{{ post.titulo }}</h5>
-    <p class="card-text">{{post.post}}</p>
+{% extends 'base.html' %} 
 
-    {% if user.is_authenticated %}
-    <form action="{% url 'publicaciones:me-gusta' post.id %}" method="post">
-      {% csrf_token %}
-      <input type="hidden" name="publicacion_id" value="{{post.id}}" />
-      {% if user in post.meGusta.all %}
-      <button type="submit" class="btn btn-success">
-        <i class="fa-regular fa-thumbs-up"></i>
-      </button>
-      {% else %}
-      <button type="submit" class="btn">
-        <i class="fa-regular fa-thumbs-up"></i>
-      </button>
-      {% endif %}
-    </form>
-    {% endif %}
-  </div>
-</div>
+{% block contenido %}
 
-<div class="comentarios-container">
-  <h2>Comentarios</h2>
-  <ul class="list-group">
-    {% for comentario in post.comentarios.all %}
-    <li class="list-group-item list-group-item-info">
-      {{comentario.creador.username}}
-    </li>
-    <li
-      class="list-group-item justify-content-between d-flex align-items-center mb-2"
-    >
-      {{comentario.texto}} <br />
-      {% if user.is_superuser or user == comentario.creador %}
-      <a href="{% url 'publicaciones:borrar-comentario' comentario.id %}"
-        ><i class="fa-solid fa-trash"></i
-      ></a>
-      {% endif %}
-    </li>
+<!-----seccion detalles publicacion------>
 
-    {% endfor %}
-  </ul>
-</div>
+<main class="container">
+  <section class="container">
 
-<form method="post">
-  {% csrf_token %} {{ comentario_form }}
+        <div class="card">
+          <div class="card-body">
+            <div class="container text-white bg-dark">
+              <p class="card-title">Titulo: {{ post.titulo }}</p>
+            </div>
+            <p class="card-text">{{post.post}}</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Publicado: {{post.fecha}}</li>
+            <li class="list-group-item">Autor: {{post.creador}}</li>
+          </ul>
+          <div class="card-body">
+            
+            {% if user.is_authenticated %}
+            <form action="{% url 'publicaciones:me-gusta' post.id %}" method="post">
+              {% csrf_token %}
+              <input type="hidden" name="publicacion_id" value="{{post.id}}" />
+              {% if user in post.meGusta.all %}
+              <button type="submit" class="btn btn-success">
+                <i class="fa-regular fa-thumbs-up"></i>
+              </button>
+              {% else %}
+              <button type="submit" class="btn">
+                <i class="fa-regular fa-thumbs-up"></i>
+              </button>
+              {% endif %}
+            </form>
+            {% endif %}
+            
+          </div>
+        </div>
 
-  <button type="submit">Comentar</button>
-</form>
+
+  
+    
+
+
+      </div>
+    </div>
+  </section>
+
+
+
+<!----seccion comentarios----->
+
+
+
+  <section class="container">
+    <div class="col ">
+
+      <div class="card mt-5">
+  
+        <div class="comentarios-container text-center mt-2">
+          <h3>Comentarios</h3>
+          <ul class="list-group">
+            {% for comentario in post.comentarios.all %}
+              <li class="list-group-item list-group-item-info">{{comentario.creador.username}}</li>
+              <li class="list-group-item justify-content-between d-flex align-items-center mb-2">{{comentario.texto}} </li>
+
+            {% if user.is_superuser or user == comentario.creador %}
+              <a href="{% url 'publicaciones:borrar-comentario' comentario.id %}"><i class="fa-solid fa-trash"></i
+              ></a>
+              {% endif %}
+            </li>
+        
+            {% endfor %}
+          </ul>
+        </div>
+        
+        <form method="post">
+          {% csrf_token %} {{ comentario_form }}
+        
+          <button type="submit">Comentar</button>
+        </form>
+    </div>
+
+    </div>
+    
+
+  </section>
+
+  
+</main>
 
 {% endblock contenido %}

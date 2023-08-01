@@ -1,11 +1,21 @@
-{% extends 'base.html' %} {% block contenido %}
-<h2>Publicar</h2>
-<div class="form-group">
-  <form method="post">
-    {% csrf_token %} {{form.as_p}}
+{% extends 'base.html' %} 
 
-    <button type="submit" class="btn btn-success">Publicar!</button>
-  </form>
-</div>
+{% block contenido %}
+
+
+<main class="container text-center">
+  <div class="row">
+    <div class="col-md-6 offset-md-3 mt-5">
+      <div class=" card card-body">
+        <h5>Nuevo Post</h5>
+        <form method="post">
+          {% csrf_token %} 
+          {{form.as_p}}
+          <button type="submit" class="btn btn-success">Publicar!</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
 
 {% endblock contenido %}
