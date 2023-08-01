@@ -77,7 +77,7 @@ _Este comando instalará en nuestro entorno todo lo necesario para que el proyec
 
 ### SETTINGS 🔧
 
-Luego tenes que crear un archivo de configuraciones en la carpeta DefiBlog/ y llamarlo "local.py", donde debes indicar las credenciales de tu base de datos como se muestra a continuacion.
+Luego tenes que crear un archivo de configuraciones en la carpeta DefiBlog/ y llamarlo "local_settings.py", donde debes indicar las credenciales de tu base de datos como se muestra a continuacion.
 
 ```
 from .base import *
@@ -103,6 +103,12 @@ Tambien será necesario modificar en settings.py que DEBUG sea True
 
 ```
 DEBUG= True
+```
+
+Y modificar manage.py para que settings sea local_settings.py
+
+```
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'DefiBlog.local_settings')
 ```
 
 
