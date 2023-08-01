@@ -108,7 +108,7 @@ _Proyecto desarrollado por:_
 
 
 
-También puedes mirar la lista de todos los [contribuyentes](link-al-area-de-contribuyentes) quienes han participado en este proyecto. 
+También puedes mirar la lista de todos los [contribuyentes](https://github.com/Grupo7-Informatorio/Grupo7_Comision7_Proyecto_Final_Info/graphs/contributors) quienes han participado en este proyecto. 
 
 
 
