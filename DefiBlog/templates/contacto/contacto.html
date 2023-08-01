@@ -1,6 +1,23 @@
-{% extends 'base.html' %} {% block contenido %}
-<form method="post">
-  {% csrf_token %} {{form.as_p}}
-  <button type="submit" class="custom-button">Enviar mensaje</button>
-</form>
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+
+<main class="container">
+  <div class="row">
+    <div class="col-md-4 offset-md-4 mt-5">
+      <form method="post" class="card card-body">
+        <h6 class="text-center">¿Tenes alguna duda?</h6>
+        <h6 class="text-center">Dejanos Tu Mensaje</h6>
+        {% csrf_token %} 
+        {{form.as_table}}
+      
+        <button type="submit " class="btn btn-primary mt-3">Enviar Mensaje</button>
+      </form>
+    </div>
+
+  </div>
+
+</main>
+
 {% endblock contenido %}
