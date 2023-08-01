@@ -1,17 +1,21 @@
-
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block contenido %}
+
 
 <main class="container">
   <div class="row">
     <div class="col-md-4 offset-md-4 mt-5">
-      <form method="post" class="card card-body">
-        <h3>¿Ya tienes una cuenta?</h3>
+      <form method="post" class=" bg-light card card-body">
+        <h5 class="font-h5 text-center">Bienvenido</h5>
         {% csrf_token %} 
         {{form.as_table}}
-      
         <button type="submit " class="btn btn-primary mt-3">Iniciar sesion</button>
+        <div class="field pt-3">
+          No tienes una cuenta? <a href="{% url 'usuarios:registro' %}">Registrate</a> 
+        </div>
       </form>
     </div>
 
