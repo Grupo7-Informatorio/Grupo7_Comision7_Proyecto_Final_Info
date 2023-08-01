@@ -15,6 +15,7 @@ class Publicaciones(models.Model):
     update = models.DateTimeField(auto_now=True)
     titulo = models.CharField(max_length = 255)
     post = models.TextField()
+    imagen_post = models.ImageField(upload_to='imagenes_post', null=True, blank=True)
     categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, related_name='posteos', null= True)
     creador = models.ForeignKey(usuario, on_delete=models.CASCADE, related_name='posteos_usario')
     meGusta = models.ManyToManyField(usuario, related_name='publicaciones_gustadas', blank=True)
