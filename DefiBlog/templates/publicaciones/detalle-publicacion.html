@@ -14,7 +14,12 @@
             </div>
             <p class="card-text">{{post.post}}</p>
           </div>
-          <img src="{{post.imagen_post.url}}" alt="">
+          
+          {% if post.image_post %}
+          <img src="{{post.imagen_post.url}}" alt="Imagen del post">
+          {% endif %}
+            
+          
           <ul class="list-group list-group-flush">
             <li class="list-group-item">Publicado: {{post.fecha}}</li>
             <li class="list-group-item">Autor: {{post.creador}}</li>
