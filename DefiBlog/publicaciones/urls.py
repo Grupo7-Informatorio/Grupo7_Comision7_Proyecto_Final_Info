@@ -1,5 +1,7 @@
 from django.urls import path
 from publicaciones import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 app_name = 'publicaciones'
 urlpatterns = [
@@ -10,4 +12,4 @@ urlpatterns = [
     path('detalle-post/<int:pk>', views.DetallePublicacion.as_view(), name='detalle-post'),
     path('borrar-comentario/<int:pk>', views.BorrarComentario.as_view(), name='borrar-comentario'),
     path('detalle-post/me_gusta/<int:pk>', views.me_gusta_view, name='me-gusta'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
