@@ -1,39 +1,5 @@
 # Grupo7_Comision7_Proyecto_Final_Info
 
-En este proyecto nos proponemos crear un blog sobre DeFi.
-
-Este proyecto es realizado por:
-
-- AGUSTIN RODRIGUEZ
-
-- ALBERTO FABIAN BASTIANI
-
-- ELIAS BRAZANOVICH
-
-- MAURICIO STALCAR
-
-- NICOLAS MIGUEL ARREJIN
-
-- VALERIA MARGARITA NUÑEZ
-
-Para poder utilizar esta aplicacion es necesario crear un archivo "local_settings.py" a lado de el archivo "settings.py" original.
-
-El nuevo archivo "local_settings.py" debe contener lo siguiente:
-
-```python
-from .settings import *
-
-DATABASES = {
-'default': {
-'ENGINE': 'django.db.backends.mysql',
-'NAME': 'NOMBRE_DE_LA_DB',
-'USER': 'USUARIO_DE_LA_DB',
-'PASSWORD': 'CONTRASEÑA_DE_LA_DB',
-'HOST': 'localhost',
-'PORT': '3306',
-}
-}
-```
 # DescentraBlog
 
 _Blog sobre finanzas descentralizadas creado en Django ._
@@ -127,11 +93,17 @@ _Las herramientas utilizadas para el desarrollo fueron:_
 _Proyecto desarrollado por:_ 
 
 
-**INTEGRANTE 1**
-**INTEGRANTE 2**
-**INTEGRANTE 3**
+- AGUSTIN RODRIGUEZ
 
- 
+- ALBERTO FABIAN BASTIANI
+
+- ELIAS BRAZANOVICH
+
+- MAURICIO STALCAR
+
+- NICOLAS MIGUEL ARREJIN
+
+- VALERIA MARGARITA NUÑEZ
 
 
 
