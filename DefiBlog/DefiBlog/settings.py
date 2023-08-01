@@ -28,10 +28,12 @@ AUTH_USER_MODEL = 'usuarios.usuario'
 SECRET_KEY = 'django-insecure-k%e1=v*crnfse%a*h*s-=xt8dh1w3pe@tv*f^o5i(=9n*_e*41'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mawryshub.mysql.pythonanywhere-services.com']
 
+if not DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Application definition
 
@@ -63,7 +65,7 @@ ROOT_URLCONF = 'DefiBlog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

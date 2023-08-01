@@ -6,10 +6,10 @@ from .settings import *
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': '',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
+        'NAME': 'mawryshub$default',
+        'USER': 'mawryshub',
+        'PASSWORD': 'AdminDB99',
+        'HOST': 'mawryshub.mysql.pythonanywhere-services.com',
+        'PORT': '3306',
     }
 }
