@@ -14,6 +14,12 @@
             </div>
             <p class="card-text">{{post.post}}</p>
           </div>
+
+          {% if post.imagen_post %}
+          <img src="{{post.imagen_post.url}}" alt="Imagen del post">
+          {% endif %}
+            
+          
           <ul class="list-group list-group-flush">
             <li class="list-group-item">Publicado: {{post.fecha}}</li>
             <li class="list-group-item">Autor: {{post.creador}}</li>
@@ -67,7 +73,7 @@
               <li class="list-group-item list-group-item-info">{{comentario.creador.username}}</li>
               <li class="list-group-item justify-content-between d-flex align-items-center mb-2">{{comentario.texto}} </li>
 
-            {% if user.is_superuser or user == comentario.creador %}
+            {% if user.is_superuser or user == comentario.creador or user == comentario.post.creador%}
               <a href="{% url 'publicaciones:borrar-comentario' comentario.id %}"><i class="fa-solid fa-trash"></i
               ></a>
               {% endif %}
@@ -80,7 +86,7 @@
         <form method="post">
           {% csrf_token %} {{ comentario_form }}
         
-          <button type="submit">Comentar</button>
+          <button class="btn btn-success" type="submit">Comentar</button>
         </form>
     </div>
 

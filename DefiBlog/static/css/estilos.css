@@ -18,7 +18,6 @@
   padding: 30px;
 }
 
-
 footer {
   justify-content: center;
   position: fixed;
@@ -93,6 +92,14 @@ p {
 
 .navTextLogo {
   font-family: "Tektur", cursive;
+}
+
+.helptext {
+  color: #000000;
+}
+
+.helptext {
+  color: #000000;
 }
 
 h1, h2, h3, h4, h5, h6 {

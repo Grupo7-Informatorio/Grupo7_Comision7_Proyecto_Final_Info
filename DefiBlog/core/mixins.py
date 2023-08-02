@@ -6,9 +6,9 @@ class SuperusuarioAutorMixin(UserPassesTestMixin):
         obj = self.get_object()
 
         if hasattr(obj, 'creador'):
-            return usuario == obj.creador or usuario.is_superuser
+            return usuario == obj.creador or usuario.is_superuser or usuario == obj.post.creador
     
-        if hasattr(obj,'post.creador'):
+        if hasattr(obj, 'post.creador'):
             return usuario == obj.creador or usuario.is_superuser or usuario == obj.post.creador
     
 class ColaboradorMixin(UserPassesTestMixin):
