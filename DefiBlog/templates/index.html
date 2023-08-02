@@ -4,63 +4,69 @@
 
 {% block contenido %}
 
+<section>
+  <div class="caja-publicaciones">
+    <div class="container-fluid text-center text-white">
+      
+    <div>
 
-<h2 class="text-center mb-4">Publicaciones destacadas</h2>
-<div class="container text-center mb-2">
-  <div class="row justify-content-evenly">
-    {% for post in posts %}
-    <div class="card text-center col-xl-4 col-sm-12">
-      <div class="card-header">Autor: {{post.creador}}</div>
-      <div class="card-body">
-        <h5 class="card-title">{{ post.titulo }}</h5>
-        <p class="m-0">Categoría: {{ post.categoria }}</p>
-        <!-- Display the number of likes -->
-        <p>Likes: {{ post.num_likes }}</p>
-        <a
-          href="{% url 'publicaciones:detalle-post' post.id %}"
-          class="btn btn-warning mb-2"
-          >Ver más</a
-        >
-        {% if user.is_superuser or user == post.creador %}
-        <a
-          href="{% url 'publicaciones:editar-publicacion' post.id %}"
-          class="btn btn-info mb-2"
-          >Editar</a
-        >
-        <a
-          href="{% url 'publicaciones:eliminar-publicacion' post.id %}"
-          class="btn btn-danger mb-2"
-          >Eliminar</a
-        >
-        {% endif %}
-        <div class="card-footer text-muted">{{ post.fecha }}</div>
+      <h2 class="text-center mb-4">Publicaciones destacadas</h2>
+      <div class="container text-center mb-2">
+        <div class="row justify-content-evenly">
+          {% for post in posts %}
+          <div class="card text-center col-xl-4 col-sm-12">
+            <div class="card-header">Autor: {{post.creador}}</div>
+            <div class="card-body">
+              <h5 class="card-title">{{ post.titulo }}</h5>
+              <p class="m-0">Categoría: {{ post.categoria }}</p>
+              <!-- Display the number of likes -->
+              <p>Likes: {{ post.num_likes }}</p>
+              <a
+                href="{% url 'publicaciones:detalle-post' post.id %}"
+                class="btn btn-warning mb-2"
+                >Ver más</a
+              >
+              {% if user.is_superuser or user == post.creador %}
+              <a
+                href="{% url 'publicaciones:editar-publicacion' post.id %}"
+                class="btn btn-info mb-2"
+                >Editar</a
+              >
+              <a
+                href="{% url 'publicaciones:eliminar-publicacion' post.id %}"
+                class="btn btn-danger mb-2"
+                >Eliminar</a
+              >
+              {% endif %}
+              <div class="card-footer text-muted">{{ post.fecha }}</div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
       </div>
-    </div>
-    {% endfor %}
-  </div>
-</div>
 
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-12">
-      <ul class="list-group">
-        <li class="list-group-item">
-          Las Finanzas Descentralizadas, también conocidas como DeFi
-          (Decentralized Finance en inglés), son una innovadora y revolucionaria
-          tendencia en el mundo financiero que se basa en la tecnología de
-          blockchain y criptomonedas para ofrecer servicios financieros de
-          manera descentralizada y sin intermediarios.
-        </li>
-        <li class="list-group-item">
-          En el ecosistema de DeFi, se utilizan contratos inteligentes para
-          crear protocolos y aplicaciones que permiten a los usuarios acceder a
-          una amplia gama de servicios financieros, como préstamos,
-          intercambios, pagos, seguros y más
-        </li>
-        <li class="list-group-item">
-          Estos protocolos son impulsados por la comunidad y operan en redes
-          públicas de blockchain, lo que significa que cualquier persona puede
-          participar y beneficiarse de ellos sin necesidad de intermediarios
+      
+      <div class="container mb-4">
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <ul class="list-group">
+              <li class="list-group-item">
+                Las Finanzas Descentralizadas, también conocidas como DeFi
+                (Decentralized Finance en inglés), son una innovadora y revolucionaria
+                tendencia en el mundo financiero que se basa en la tecnología de
+                blockchain y criptomonedas para ofrecer servicios financieros de
+                manera descentralizada y sin intermediarios.
+              </li>
+              <li class="list-group-item">
+                En el ecosistema de DeFi, se utilizan contratos inteligentes para
+                crear protocolos y aplicaciones que permiten a los usuarios acceder a
+                una amplia gama de servicios financieros, como préstamos,
+                intercambios, pagos, seguros y más
+              </li>
+              <li class="list-group-item">
+                Estos protocolos son impulsados por la comunidad y operan en redes
+                públicas de blockchain, lo que significa que cualquier persona puede
+                participar y beneficiarse de ellos sin necesidad de intermediarios
           tradicionales como bancos u otras instituciones financieras.
         </li>
         <li class="list-group-item">
@@ -95,5 +101,6 @@
     </div>
   </div>
 </div>
+</section>
 
 {% endblock contenido %}

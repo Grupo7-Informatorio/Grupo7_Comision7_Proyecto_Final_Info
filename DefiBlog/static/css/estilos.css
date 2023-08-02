@@ -1,5 +1,8 @@
+* {
+  gap: 0;
+}
+
 #cuerpo {
-  background-image: url(../img/DeFi.webp);
   background: linear-gradient(
     0deg,
     rgba(2, 0, 36, 1) 0%,
@@ -90,4 +93,12 @@ p {
 
 .navTextLogo {
   font-family: "Tektur", cursive;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Tektur", cursive;
+}
+
+.caja-publicaciones {
+  background-color: rgba(236, 230, 230, 0.2);
 }
